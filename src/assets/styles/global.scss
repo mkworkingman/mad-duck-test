@@ -48,3 +48,21 @@ select {
     scroll-behavior: auto !important;
   }
 }
+
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    height: 60px;
+  }
+
+  &__main {
+
+  }
+
+  &__footer {
+    margin-top: auto;
+  }
+}

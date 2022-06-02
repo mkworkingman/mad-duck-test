@@ -1,12 +1,18 @@
 <template>
-<div class="wrapper">
-
-  <h1 class="test">WeatherStation</h1>
+<div class="layout">
+  <HeaderLayout />
+  <main class="layout__main">
+    content
+  </main>
+  <FooterLayout />
 </div>
 </template>
 
 <script>
+import HeaderLayout from './components/layout/HeaderLayout.vue';
+import FooterLayout from './components/layout/FooterLayout.vue';
 export default {
-  name: 'App',
+  name: "App",
+  components: { HeaderLayout, FooterLayout }
 }
 </script>
