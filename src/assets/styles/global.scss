@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
 *,
 *::before,
 *::after {
@@ -19,6 +21,7 @@ html:focus-within {
 body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
+  font-family: 'Poppins', sans-serif;
 }
 
 img,
@@ -49,6 +52,7 @@ select {
   }
 }
 
+// Styles for layout
 .layout {
   min-height: 100vh;
   display: flex;
@@ -70,16 +74,28 @@ select {
 
   &__navigation {
     padding: 20px;
-    max-width: 1520px;
+    max-width: 1680px;
     width: 100%;
     margin-inline: auto;
+
+    @media (min-width: 820px) {
+      padding: 50px 80px;
+
+      .logo {
+        width: 260px;
+      }
+    }
   }
 
   &__main {
     padding: 20px;
-    max-width: 1520px;
+    max-width: 1680px;
     width: 100%;
     margin-inline: auto;
+
+    @media (min-width: 820px) {
+      padding-inline: 80px;
+    }
   }
 
   &__footer {
