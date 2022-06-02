@@ -21,21 +21,34 @@
       >
     </form>
   </div>
+  <div class="card-list">
+    <CityCard v-for="card in citiesArray" :key="card" :card="card" />
+  </div>
 </template>
 
 <script>
 import { ref } from '@vue/reactivity'
+import CityCard from '../components/CityCard.vue'
 export default {
-  name: 'Home',
-  setup() {
-    const cityName = ref('')
-
-    const submitCity = () => {
-      console.log(cityName.value.trim())
-    }
-
-    return { cityName, submitCity }
-  },
+    name: "Home",
+    setup() {
+        const citiesStorage = JSON.parse(localStorage.getItem("cities"));
+        const cityName = ref("");
+        const citiesArray = ref([]);
+        const submitCity = () => {
+          const trimmedValue = cityName.value.trim();
+          if (trimmedValue && !citiesArray.value.includes(trimmedValue)) {
+            citiesArray.value.push(trimmedValue);
+            cityName.value = "";
+            localStorage.setItem("cities", JSON.stringify(citiesArray.value));
+          }
+        };
+        if (Array.isArray(citiesStorage)) {
+            citiesArray.value = [...citiesStorage];
+        }
+        return { cityName, citiesArray, submitCity };
+    },
+    components: { CityCard }
 }
 </script>
 
@@ -87,12 +100,12 @@ export default {
         padding: 19px 130px 19px 80px;
       }
 
-      &:hover {
-        border-color: #5abece;
+      &:hover,
+      &:focus {
+        border-color: #04353C;
       }
 
       &:focus {
-        border-color: #04353C;
         box-shadow: 0 0 0 0.2rem rgb(4 53 60 / 25%);
       }
     }
@@ -136,6 +149,23 @@ export default {
         }
       }
     }
+  }
+}
+
+.card-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 30px;
+
+  @media (min-width: 820px) {
+    grid-template-columns: repeat(auto-fill, minmax(min(220px, 25vw), 1fr));
+    gap: 20px clamp(15px, calc(4vw - 20px), 55px);
+    margin-top: 50px;
+  }
+
+  @media (min-width: 1200px) {
+    margin-top: 150px;
   }
 }
 </style>
