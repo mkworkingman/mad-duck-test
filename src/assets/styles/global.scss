@@ -103,11 +103,20 @@ select {
     padding: 10px 20px;
     background-color: #04353C;
     color: #fff;
+    font-weight: 300;
 
-    &-text {
+    &--text {
       text-align: center;
       font-size: 14px;
       line-height: 20px;
+    }
+
+    @media (min-width: 820px) {
+      padding-block: 20px;
+
+      &--text {
+        font-size: 16px;
+      }
     }
   }
 }
