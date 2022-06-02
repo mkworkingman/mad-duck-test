@@ -1,11 +1,5 @@
 <template>
   <footer class="layout__footer">
-    footer
+    <p class="layout__footer-text">Frontend Task | Mad Duck Code</p>
   </footer>
 </template>
-
-<script>
-export default {
-
-}
-</script>

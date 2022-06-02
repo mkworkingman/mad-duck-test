@@ -53,16 +53,45 @@ select {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: #0A545F;
+  background-image: url('../images/bg.png');
+  background-size: cover;
+  background-position: right bottom;
+
+  // For Retina Monitors
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
+    background-image: url('../images/bg-retina.png');
+  }
 
   &__header {
-    height: 60px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__navigation {
+    padding: 20px;
+    max-width: 1520px;
+    width: 100%;
+    margin-inline: auto;
   }
 
   &__main {
-
+    padding: 20px;
+    max-width: 1520px;
+    width: 100%;
+    margin-inline: auto;
   }
 
   &__footer {
     margin-top: auto;
+    padding: 10px 20px;
+    background-color: #04353C;
+    color: #fff;
+
+    &-text {
+      text-align: center;
+      font-size: 14px;
+      line-height: 20px;
+    }
   }
 }
