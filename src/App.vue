@@ -2,7 +2,7 @@
 <div class="layout">
   <HeaderLayout />
   <main class="layout__main">
-    content
+    <router-view />
   </main>
   <FooterLayout />
 </div>
