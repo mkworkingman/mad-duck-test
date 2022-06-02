@@ -57,6 +57,7 @@ select {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  color: #fff;
   background-color: #0A545F;
   background-image: url('../images/bg.png');
   background-size: cover;
@@ -102,7 +103,6 @@ select {
     margin-top: auto;
     padding: 10px 20px;
     background-color: #04353C;
-    color: #fff;
     font-weight: 300;
 
     &--text {

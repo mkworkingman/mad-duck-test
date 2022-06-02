@@ -44,7 +44,6 @@ export default {
   max-width: 1000px;
   width: 100%;
   margin-inline: auto;
-  color: #fff;
 
   &__heading {
     font-size: 20px;
