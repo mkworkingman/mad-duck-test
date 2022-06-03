@@ -32,21 +32,25 @@ import CityCard from '../components/CityCard.vue'
 export default {
     name: "Home",
     setup() {
-        const citiesStorage = JSON.parse(localStorage.getItem("cities"));
-        const cityName = ref("");
-        const citiesArray = ref([]);
-        const submitCity = () => {
-          const trimmedValue = cityName.value.trim();
-          if (trimmedValue && !citiesArray.value.includes(trimmedValue)) {
-            citiesArray.value.push(trimmedValue);
-            cityName.value = "";
-            localStorage.setItem("cities", JSON.stringify(citiesArray.value));
-          }
-        };
-        if (Array.isArray(citiesStorage)) {
-            citiesArray.value = [...citiesStorage];
+      const citiesStorage = JSON.parse(localStorage.getItem("cities"));
+      const cityName = ref("");
+      const citiesArray = ref([]);
+
+      const submitCity = () => {
+        const trimmedValue = cityName.value.trim();
+
+        if (trimmedValue && !citiesArray.value.includes(trimmedValue)) {
+          citiesArray.value.push(trimmedValue);
+          cityName.value = "";
+          localStorage.setItem("cities", JSON.stringify(citiesArray.value));
         }
-        return { cityName, citiesArray, submitCity };
+      };
+
+      if (Array.isArray(citiesStorage)) {
+          citiesArray.value = [...citiesStorage];
+      }
+      
+      return { cityName, citiesArray, submitCity };
     },
     components: { CityCard }
 }
