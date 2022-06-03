@@ -1,4 +1,3 @@
 <template>
-  <h1>City</h1>
-  <h2>Country</h2>
+  <h1>{{ $route.params.city }}</h1>
 </template>

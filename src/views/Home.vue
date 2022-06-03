@@ -157,11 +157,14 @@ export default {
   grid-template-columns: 1fr 1fr;
   gap: 10px;
   margin-top: 30px;
+  max-width: 550px;
+  margin: 30px auto 0;
 
   @media (min-width: 820px) {
     grid-template-columns: repeat(auto-fill, minmax(min(220px, 25vw), 1fr));
     gap: 20px clamp(15px, calc(4vw - 20px), 55px);
     margin-top: 50px;
+    max-width: initial;
   }
 
   @media (min-width: 1200px) {
