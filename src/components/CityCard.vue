@@ -33,11 +33,11 @@ export default {
 
     axios.get('http://api.weatherstack.com/current', {
       params: {
-        access_key: '3c1bc2be7adb78435808e07c3cdb66c7',
+        access_key: 'f2e4e44f4e397bc7f1876ce7c0162d36',
         query: props.card
       }
     }).then(res => {
-      if (!res.data.success) throw Error(res.data.error.info)
+      if (res.data.success === false) throw Error(res.data.error.info)
       cardInfo.city = res.data.location.name
       cardInfo.country = res.data.location.country
       cardInfo.temperature = res.data.current.temperature
