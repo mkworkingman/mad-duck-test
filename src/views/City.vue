@@ -14,12 +14,26 @@
 <script>
 import { useRoute } from 'vue-router'
 import axios from 'axios'
-import { ref } from '@vue/reactivity'
+import { reactive, ref } from '@vue/reactivity'
 export default {
   setup() {
     const citiesStorage = JSON.parse(localStorage.getItem('cities'))
     const city = useRoute().params.city
     const formattedCity = city.split('_').map(v => v[0].toUpperCase() + v.slice(1)).join(' ')
+    const cityInfo = reactive({
+      city: null,
+      region: null,
+      country: null,
+      lat: null,
+      lon: null,
+      weather_descriptions: null,
+      temperature: null,
+      feelslike: null,
+      humidity: null,
+      pressure: null,
+      wind_speed: null,
+      uv_index: null
+    })
     const notIncluded = ref(false)
     const loading = ref(true)
 
@@ -41,7 +55,7 @@ export default {
       notIncluded.value = true
     }
 
-    return { formattedCity, notIncluded, loading }
+    return { formattedCity, notIncluded, cityInfo, loading }
   },
 }
 </script>
