@@ -5,10 +5,12 @@ import City from '../views/City.vue'
 const routes = [
   {
     path: '/',
+    name: 'Home',
     component: Home
   },
   {
     path: '/:city',
+    name: 'City',
     component: City
   },
   {
@@ -23,6 +25,19 @@ const router = createRouter({
   scrollBehavior() {
     return { top: 0 }
   },
+})
+
+router.beforeEach((to, from, next) => {
+  const addToTitle = 'Mad Duck Code'
+  if (to.name === 'Home') {
+    document.title = `${to.name} | ${addToTitle}`
+  } else if (to.params.city) {
+    document.title = `${to.params.city} | ${addToTitle}`
+  } else {
+    document.title = addToTitle
+  }
+
+  next()
 })
 
 export default router
