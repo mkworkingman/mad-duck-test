@@ -1,13 +1,13 @@
 <template>
-  <router-link :to="'/' + name" class="card">
-    <h4 class="card__heading">{{cardInfo.city || card}}</h4>
+  <router-link :to="'/' + card" class="card">
+    <h4 class="card__heading">{{name}}</h4>
     <div v-if="loading">Loading...</div>
     <div v-else-if="cardInfo.country && cardInfo.temperature" class="card__info">
       <p class="card__country">
         {{cardInfo.country}}
       </p>
       <p class="card__temperature">
-        {{cardInfo.temperature}}
+        {{cardInfo.temperature}}°C
       </p>
       <button class="card__button">View City</button>
     </div>
@@ -23,7 +23,7 @@ import axios from 'axios'
 export default {
   props: ['card'],
   setup(props) {
-    const name = props.card.toLowerCase().replace(/ /g,"_")
+    const name = props.card.split('_').map(v => v[0].toUpperCase() + v.slice(1)).join(' ')
     const loading = ref(true)
     const cardInfo = reactive({
       city: null,
@@ -34,12 +34,13 @@ export default {
     axios.get('http://api.weatherstack.com/current', {
       params: {
         access_key: '3c1bc2be7adb78435808e07c3cdb66c7',
-        query: name
+        query: props.card
       }
     }).then(res => {
+      if (!res.data.success) throw Error(res.data.error.info)
       cardInfo.city = res.data.location.name
       cardInfo.country = res.data.location.country
-      cardInfo.temperature = res.data.current.temperature + '°C'
+      cardInfo.temperature = res.data.current.temperature
     }).catch(err => {
       console.error(err)
     }).finally(() => {

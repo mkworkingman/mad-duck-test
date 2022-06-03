@@ -12,29 +12,29 @@
 <script>
 import { ref } from '@vue/reactivity'
 import CityCard from '../components/CityCard.vue'
-import AddCity from '../components/AddCity.vue';
+import AddCity from '../components/AddCity.vue'
 export default {
   name: "Home",
   setup() {
-    const citiesStorage = JSON.parse(localStorage.getItem('cities'));
-    const cityName = ref('');
-    const citiesArray = ref([]);
+    const citiesStorage = JSON.parse(localStorage.getItem('cities'))
+    const cityName = ref('')
+    const citiesArray = ref([])
 
     const submitCity = () => {
-      const trimmedValue = cityName.value.trim();
+      const formattedCity = cityName.value.trim().toLowerCase().replace(/ /g,"_")
 
-      if (trimmedValue && !citiesArray.value.includes(trimmedValue)) {
-        citiesArray.value.push(trimmedValue);
-        cityName.value = '';
-        localStorage.setItem('cities', JSON.stringify(citiesArray.value));
+      if (formattedCity && !citiesArray.value.includes(formattedCity)) {
+        citiesArray.value.push(formattedCity)
+        cityName.value = ''
+        localStorage.setItem('cities', JSON.stringify(citiesArray.value))
       }
     };
 
     if (Array.isArray(citiesStorage)) {
-      citiesArray.value = [...citiesStorage];
+      citiesArray.value = [...citiesStorage]
     }
     
-    return { cityName, citiesArray, submitCity };
+    return { cityName, citiesArray, submitCity }
   },
   components: { CityCard, AddCity }
 }
