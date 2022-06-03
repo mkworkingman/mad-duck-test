@@ -47,7 +47,7 @@ export default {
       };
 
       if (Array.isArray(citiesStorage)) {
-          citiesArray.value = [...citiesStorage];
+        citiesArray.value = [...citiesStorage];
       }
       
       return { cityName, citiesArray, submitCity };
