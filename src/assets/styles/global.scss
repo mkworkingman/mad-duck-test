@@ -78,6 +78,7 @@ select {
   }
 
   &__navigation {
+    display: flex;
     padding: 20px;
     max-width: 1680px;
     width: 100%;
