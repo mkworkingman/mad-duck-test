@@ -10,7 +10,7 @@ import axios from 'axios'
 export default {
   props: ['card'],
   setup(props) {
-    const name = ref(props.card.toLowerCase().split(' ').join('_'))
+    const name = ref(props.card.toLowerCase().replace(/ /g,"_"))
 
     axios.get('http://api.weatherstack.com/current', {
       params: {
