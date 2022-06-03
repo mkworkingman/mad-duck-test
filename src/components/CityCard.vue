@@ -30,7 +30,6 @@ export default {
       country: null,
       temperature: null
     })
-    const error = ref(null)
 
     axios.get('http://api.weatherstack.com/current', {
       params: {
@@ -43,11 +42,10 @@ export default {
       cardInfo.temperature = res.data.current.temperature + '°C'
     }).catch(err => {
       console.error(err)
-      error.value = true
     }).finally(() => {
       loading.value = false
     })
-    return { name, cardInfo, loading, error }
+    return { name, cardInfo, loading }
   },
 }
 </script>
