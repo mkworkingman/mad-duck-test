@@ -1,16 +1,36 @@
 <template>
   <router-link :to="'/' + name" class="card">
-    <h4>{{card}}</h4>
+    <h4 class="card__heading">{{cardInfo.city || card}}</h4>
+    <div v-if="loading">Loading...</div>
+    <div v-else-if="cardInfo.country && cardInfo.temperature" class="card__info">
+      <p class="card__country">
+        {{cardInfo.country}}
+      </p>
+      <p class="card__temperature">
+        {{cardInfo.temperature}}
+      </p>
+      <button class="card__button">View City</button>
+    </div>
+    <div v-else>
+      Error!
+    </div>
   </router-link>
 </template>
 
 <script>
-import { ref } from '@vue/reactivity'
+import { reactive, ref } from '@vue/reactivity'
 import axios from 'axios'
 export default {
   props: ['card'],
   setup(props) {
-    const name = ref(props.card.toLowerCase().replace(/ /g,"_"))
+    const name = props.card.toLowerCase().replace(/ /g,"_")
+    const loading = ref(true)
+    const cardInfo = reactive({
+      city: null,
+      country: null,
+      temperature: null
+    })
+    const error = ref(null)
 
     axios.get('http://api.weatherstack.com/current', {
       params: {
@@ -18,10 +38,16 @@ export default {
         query: name
       }
     }).then(res => {
-      console.log(res)
-      console.log(res.data)
+      cardInfo.city = res.data.location.name
+      cardInfo.country = res.data.location.country
+      cardInfo.temperature = res.data.current.temperature + '°C'
+    }).catch(err => {
+      console.error(err)
+      error.value = true
+    }).finally(() => {
+      loading.value = false
     })
-    return { name }
+    return { name, cardInfo, loading, error }
   },
 }
 </script>
@@ -33,7 +59,43 @@ export default {
   border-radius: 10px;
   padding: 20px 15px 30px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
   animation: cardAppear 400ms;
+
+  &__heading {
+    @media (min-width: 820px) {
+      font-size: 24px;
+    }
+  }
+
+  &__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__country {
+    font-size: 12px;
+    color: #707070;
+    margin-block: 5px 10px;
+  }
+
+  &__temperature {
+    margin-block: auto 20px;
+    font-size: 38px;
+    font-weight: 600;
+  }
+
+  &__button {
+    font-size: 14px;
+    background-color: #04353C;
+    color: #fff;
+    height: 26px;
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+  }
 }
 
 @keyframes cardAppear {
