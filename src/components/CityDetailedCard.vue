@@ -22,11 +22,6 @@
       <div class="main-info__temperature">
         <div class="main-info__temperature-wrapper">
           <WeatherIcon :description="cityInfo.weather_descriptions" />
-          <!-- <img
-            class="main-info__weather-icon"
-            :src="require(`@/assets/images/icons/${cityInfo.weather_descriptions}.svg`)"
-            :alt="cityInfo.weather_descriptions"
-          /> -->
           <p class="main-info__temperature-number">
             {{cityInfo.temperature}}°C
           </p>
