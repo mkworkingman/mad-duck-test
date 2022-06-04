@@ -1,43 +1,17 @@
 <template>
-  <div class="main-info" :class="{'main-info--success' : cityInfo.success}">
-    <div class="main-info__location">
-      <h1 class="main-info__heading">{{formattedCity}}</h1>
-      <div v-if="notIncluded">
-        <h2 class="main-info__status">Sorry, this city is not included.</h2>
-      </div>
-      <h2 v-else-if="loading" class="main-info__status">Loading...</h2>
-      <template v-else-if="cityInfo.success">
-        <p>
-          {{cityInfo.region
-            ? cityInfo.region + ', ' + cityInfo.country
-            : cityInfo.country
-          }}
-        </p>
-        <p>{{cityInfo.lat}}° N</p>
-        <p>{{cityInfo.lon}}° E</p>
-      </template>
-      <h2 v-else class="main-info__status">Error!</h2>
-    </div>
-    <template v-if="cityInfo.success">
-      <div class="main-info__temperature">
-        <p>{{cityInfo.weather_descriptions}}</p>
-        <p>{{cityInfo.temperature}}°C</p>
-      </div>
-      <div class="main-info__other-info">
-        <p><strong>Feels Like</strong> {{cityInfo.feelslike}}°C</p>
-        <p><strong>Humidity</strong> {{cityInfo.humidity}}%</p>
-        <p><strong>Pressure</strong> {{cityInfo.pressure}} mbar</p>
-        <p><strong>Wind</strong> {{cityInfo.wind_speed}} m/s {{cityInfo.wind_dir}}</p>
-        <p><strong>UV index</strong> {{cityInfo.uv_index}}</p>
-      </div>
-    </template>
-  </div>
+  <CityDetailedCard
+    :formattedCity="formattedCity"
+    :cityInfo="cityInfo"
+    :notIncluded="notIncluded"
+    :loading="loading"
+  />
 </template>
 
 <script>
 import { useRoute } from 'vue-router'
 import axios from 'axios'
 import { reactive, ref } from '@vue/reactivity'
+import CityDetailedCard from '../components/CityDetailedCard.vue'
 export default {
   setup() {
     const citiesStorage = JSON.parse(localStorage.getItem('cities'))
@@ -107,57 +81,6 @@ export default {
 
     return { formattedCity, notIncluded, cityInfo, loading }
   },
+  components: { CityDetailedCard }
 }
 </script>
-
-<style lang="scss" scoped>
-.main-info {
-  padding: 26px 20px 30px;
-  border-radius: 10px;
-  color: transparent;
-  max-width: 350px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px 10px;
-  transition: background-color 400ms, color 400ms;
-
-  &__location {
-    flex: 0 0 100%;
-  }
-
-  &__temperature {
-    flex: 1;
-  }
-
-  &__other-info {
-    flex: 1;
-  }
-
-  @media (min-width: 820px) {
-    max-width: clamp(660px, 55vw, 862px);
-
-    &__location {
-      flex: 1;
-    }
-  }
-
-  &__status {
-    color: #fff;
-  }
-
-  &--success {
-    color: #04353C;
-    background-color: #fff;
-
-    .main-info__heading {
-      color: #04353C;
-    }
-  }
-
-  &__heading {
-    font-size: 22px;
-    color: #fff;
-    transition: color 400ms;
-  }
-}
-</style>

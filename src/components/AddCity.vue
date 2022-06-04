@@ -52,7 +52,7 @@ export default {
 
     &:hover,
     &:focus {
-      border-color: #04353C;
+      border-color: var(--primary-clr);
     }
 
     &:focus {
@@ -63,7 +63,7 @@ export default {
   &__btn {
     position: absolute;
     color: #fff;
-    background-color: #04353C;
+    background-color: var(--primary-clr);
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;

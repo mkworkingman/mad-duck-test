@@ -53,7 +53,7 @@ export default {
 
 <style lang="scss" scoped>
 .card {
-  color: #04353C;
+  color: var(--primary-clr);
   background: #fff;
   border-radius: 10px;
   padding: 20px 15px 30px;
@@ -88,7 +88,7 @@ export default {
 
   &__button {
     font-size: 14px;
-    background-color: #04353C;
+    background-color: var(--primary-clr);
     color: #fff;
     height: 26px;
     width: 100%;

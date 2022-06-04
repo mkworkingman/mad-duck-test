@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
+:root {
+  --primary-clr: #04353C;
+}
+
 .layout {
   min-height: 100vh;
   display: flex;
@@ -50,7 +54,7 @@
   &__footer {
     margin-top: auto;
     padding: 10px 20px;
-    background-color: #04353C;
+    background-color: var(--primary-clr);
     font-weight: 300;
 
     &--text {
