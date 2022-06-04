@@ -7,7 +7,6 @@
     >
     <input
       class="add-city__input"
-      type="text"
       placeholder="Add a city…"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
