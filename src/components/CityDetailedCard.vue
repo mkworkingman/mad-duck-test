@@ -1,7 +1,7 @@
 <template>
   <div class="main-info" :class="{'main-info--success' : cityInfo.success}">
     <div class="main-info__location">
-      <h1 class="main-info__heading">{{formattedCity}}</h1>
+      <h1 class="main-info__heading">{{cityInfo.city || formattedCity}}</h1>
       <div v-if="notIncluded">
         <h2 class="main-info__status">Sorry, this city is not included.</h2>
       </div>
@@ -20,14 +20,17 @@
     </div>
     <template v-if="cityInfo.success">
       <div class="main-info__temperature">
-        <img
-          class="main-info__weather-icon"
-          :src="require(`@/assets/images/icons/${cityInfo.weather_descriptions}.svg`)"
-          :alt="cityInfo.weather_descriptions"
-        />
-        <p class="main-info__temperature-number">
-          {{cityInfo.temperature}}°C
-        </p>
+        <div class="main-info__temperature-wrapper">
+          <WeatherIcon :description="cityInfo.weather_descriptions" />
+          <!-- <img
+            class="main-info__weather-icon"
+            :src="require(`@/assets/images/icons/${cityInfo.weather_descriptions}.svg`)"
+            :alt="cityInfo.weather_descriptions"
+          /> -->
+          <p class="main-info__temperature-number">
+            {{cityInfo.temperature}}°C
+          </p>
+        </div>
       </div>
       <div class="main-info__other-info">
         <p><strong class="main-info__strong">Feels Like</strong> {{cityInfo.feelslike}}°C</p>
@@ -41,8 +44,10 @@
 </template>
 
 <script>
+import WeatherIcon from './WeatherIcon.vue'
 export default {
-  props: ["formattedCity", "cityInfo", "notIncluded", "loading"]
+  props: ["formattedCity", "cityInfo", "notIncluded", "loading"],
+  components: { WeatherIcon }
 }
 </script>
 
@@ -75,10 +80,18 @@ export default {
 
   &__temperature {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
+
+    &-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      width: fit-content;
+
+      @media (min-width: 820px) {
+        width: auto;
+      }
+    }
 
     .main-info__weather-icon {
       width: 50px;
