@@ -1,5 +1,5 @@
 <template>
-  <img :src="imgUrl" :alt="description">
+  <img class="weather-icon" :src="imgUrl" :alt="description">
 </template>
 
 <script>
@@ -19,5 +19,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.weather-icon {
+  width: 50px;
+  height: 50px;
 
+  @media (min-width: 820px) {
+    width: 75px;
+    height: 75px;
+  }
+}
 </style>
