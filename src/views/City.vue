@@ -70,7 +70,6 @@ export default {
         }
       }).then(res => {
         if (res.data.success === false) throw Error(res.data.error.info)
-        console.log(res.data)
         cityInfo.success = true
         cityInfo.city = res.data.location.name
         cityInfo.region = res.data.location.region
