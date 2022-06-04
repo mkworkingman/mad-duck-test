@@ -115,7 +115,31 @@ export default {
   padding: 26px 20px 30px;
   border-radius: 10px;
   color: transparent;
+  max-width: 350px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px 10px;
   transition: background-color 400ms, color 400ms;
+
+  &__location {
+    flex: 0 0 100%;
+  }
+
+  &__temperature {
+    flex: 1;
+  }
+
+  &__other-info {
+    flex: 1;
+  }
+
+  @media (min-width: 820px) {
+    max-width: clamp(660px, 55vw, 862px);
+
+    &__location {
+      flex: 1;
+    }
+  }
 
   &__status {
     color: #fff;
