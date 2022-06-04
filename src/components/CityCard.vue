@@ -1,7 +1,7 @@
 <template>
   <router-link :to="'/' + card" class="card">
     <h4 class="card__heading">{{name}}</h4>
-    <div v-if="loading">Loading...</div>
+    <div v-if="loading" class="card__loading">Loading...</div>
     <div v-else-if="cardInfo.country && cardInfo.temperature" class="card__info">
       <p class="card__country">
         {{cardInfo.country}}

@@ -16,7 +16,12 @@ import AddCity from '../components/AddCity.vue'
 export default {
   name: "Home",
   setup() {
-    const citiesStorage = JSON.parse(localStorage.getItem('cities'))
+    const citiesStorage = ref([])
+    try {
+      citiesStorage.value = JSON.parse(localStorage.getItem('cities'))
+    } catch {
+      console.error('Wrong Storage')
+    }
     const cityName = ref('')
     const citiesArray = ref([])
 
@@ -30,8 +35,8 @@ export default {
       }
     };
 
-    if (Array.isArray(citiesStorage)) {
-      citiesArray.value = [...citiesStorage]
+    if (Array.isArray(citiesStorage.value)) {
+      citiesArray.value = [...citiesStorage.value]
     }
     
     return { cityName, citiesArray, submitCity }
