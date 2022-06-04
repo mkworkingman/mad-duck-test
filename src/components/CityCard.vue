@@ -33,7 +33,7 @@ export default {
 
     axios.get('http://api.weatherstack.com/current', {
       params: {
-        access_key: 'f2e4e44f4e397bc7f1876ce7c0162d36',
+        access_key: '2be358ec4c6cf2b17791a919af94d900',
         query: props.card
       }
     }).then(res => {

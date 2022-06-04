@@ -1,5 +1,5 @@
 <template>
-  <img class="weather-icon" :src="imgUrl" :alt="description">
+  <img class="weather-icon" :src="imgUrl" :alt="description || ''">
 </template>
 
 <script>
@@ -8,10 +8,12 @@ export default {
   props: ['description'],
   setup (props) {
     const imgUrl = ref('')
-    try {
-      imgUrl.value = require(`@/assets/images/icons/${props.description}.svg`)
-    } catch (err) {
-      console.error(err)
+    if (props.description) {
+      try {
+        imgUrl.value = require(`@/assets/images/icons/${props.description}.svg`)
+      } catch (err) {
+        console.error(err)
+      }
     }
     return { imgUrl }
   },

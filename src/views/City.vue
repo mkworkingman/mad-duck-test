@@ -36,10 +36,10 @@ export default {
     const notIncluded = ref(false)
     const loading = ref(true)
 
-    if (citiesStorage.includes(city)) {
+    if (citiesStorage && citiesStorage.includes(city)) {
       axios.get('http://api.weatherstack.com/current', {
         params: {
-          access_key: 'f2e4e44f4e397bc7f1876ce7c0162d36',
+          access_key: '2be358ec4c6cf2b17791a919af94d900',
           query: city
         }
       }).then(res => {
