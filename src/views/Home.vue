@@ -43,7 +43,6 @@ export default {
           .then(res => {
             if (res.data[0]) {
               const cityNameFromAPI = res.data[0].name
-              console.log(cityNameFromAPI)
               if (!citiesArray.value.includes(cityNameFromAPI)) {
                 citiesArray.value.push(cityNameFromAPI)
                 cityName.value = ''
