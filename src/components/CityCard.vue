@@ -1,8 +1,12 @@
 <template>
-  <router-link :to="'/' + card" class="card">
-    <h4 class="card__heading">{{name}}</h4>
+  <router-link
+    :to="valid ? '/' + card : ''"
+    class="card"
+    :class="{'card--not-valid': !valid}"
+  >
+    <h4 class="card__heading">{{cardInfo.city || card}}</h4>
     <div v-if="loading" class="card__loading">Loading...</div>
-    <div v-else-if="cardInfo.country && cardInfo.temperature" class="card__info">
+    <div v-else-if="valid" class="card__info">
       <p class="card__country">
         {{cardInfo.country}}
       </p>
@@ -11,7 +15,7 @@
       </p>
       <button class="card__button">View City</button>
     </div>
-    <div v-else>
+    <div v-else class="card__error">
       Error!
     </div>
   </router-link>
@@ -19,34 +23,40 @@
 
 <script>
 import { reactive, ref } from '@vue/reactivity'
-// import axios from 'axios'
+import axios from 'axios'
+import { computed } from '@vue/runtime-core'
 export default {
   props: ['card'],
   setup(props) {
-    const name = props.card.split('_').map(v => v[0].toUpperCase() + v.slice(1)).join(' ')
     const loading = ref(true)
     const cardInfo = reactive({
       city: null,
       country: null,
       temperature: null
     })
+    const valid = computed(() => {
+      return cardInfo.country && cardInfo.temperature
+    }) 
 
-    // axios.get('http://api.weatherstack.com/current', {
-    //   params: {
-    //     access_key: '2be358ec4c6cf2b17791a919af94d900',
-    //     query: props.card
-    //   }
-    // }).then(res => {
-    //   if (res.data.success === false) throw Error(res.data.error.info)
-    //   cardInfo.city = res.data.location.name
-    //   cardInfo.country = res.data.location.country
-    //   cardInfo.temperature = res.data.current.temperature
-    // }).catch(err => {
-    //   console.error(err)
-    // }).finally(() => {
-    //   loading.value = false
-    // })
-    return { name, cardInfo, loading }
+    axios.get('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/' + props.card, {
+      params: {
+        unitGroup: 'metric',
+        key: '7F44VQFF6LAFLRSSLKDYCD3GA',
+        contentType: 'json'
+      }
+    })
+      .then(res => {
+        console.log(res)
+        const resolvedAddressSplitted = res.data.resolvedAddress.split(', ')
+        cardInfo.city = resolvedAddressSplitted[0]
+        cardInfo.country = resolvedAddressSplitted[resolvedAddressSplitted.length - 1]
+        cardInfo.temperature = res.data.currentConditions.temp
+      })
+      .catch(err => console.error(err))
+      .finally(() => {
+        loading.value = false
+      })
+    return { cardInfo, loading, valid }
   },
 }
 </script>
@@ -61,6 +71,10 @@ export default {
   display: flex;
   flex-direction: column;
   animation: cardAppear 400ms;
+
+  &--not-valid {
+    cursor: default;
+  }
 
   &__heading {
     @media (min-width: 820px) {
@@ -94,6 +108,10 @@ export default {
     width: 100%;
     border-radius: 8px;
     cursor: pointer;
+  }
+
+  &__error {
+    color: #b81a1a;
   }
 }
 

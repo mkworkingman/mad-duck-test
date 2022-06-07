@@ -32,7 +32,7 @@ router.beforeEach((to, from, next) => {
   if (to.name === 'Home') {
     document.title = `${to.name} | ${addToTitle}`
   } else if (to.params.city) {
-    document.title = `${to.params.city.split('_').map(v => v[0].toUpperCase() + v.slice(1)).join(' ')} | ${addToTitle}`
+    document.title = `${to.params.city} | ${addToTitle}`
   } else {
     document.title = addToTitle
   }
