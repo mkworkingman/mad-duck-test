@@ -17,15 +17,19 @@ import axios from 'axios'
 export default {
   name: "Home",
   setup() {
-    const citiesStorage = ref([])
-    try {
-      citiesStorage.value = JSON.parse(localStorage.getItem('cities'))
-    } catch {
-      console.error('Wrong Storage')
-    }
     const cityName = ref('')
     const citiesArray = ref([])
     const loading = ref(false)
+    try {
+      const parcedStorage = JSON.parse(localStorage.getItem('cities'))
+      if (Array.isArray(parcedStorage)) {
+        citiesArray.value = parcedStorage
+      } else {
+        throw Error
+      }
+    } catch {
+      console.error('Wrong Storage')
+    }
 
     const submitCity = () => {
       const cityNameTrim = cityName.value.trim()
@@ -56,10 +60,6 @@ export default {
           })
       }
     };
-
-    if (Array.isArray(citiesStorage.value)) {
-      citiesArray.value = [...citiesStorage.value]
-    }
     
     return { cityName, citiesArray, loading, submitCity }
   },
