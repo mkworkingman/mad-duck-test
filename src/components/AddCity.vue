@@ -4,24 +4,27 @@
       class="add-city__btn add-city__btn--plus"
       type="submit"
       value="+"
+      :disabled="loading"
     >
     <input
       class="add-city__input"
       placeholder="Add a city…"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
+      :disabled="loading"
     >
     <input
       class="add-city__btn add-city__btn--add"
       type="submit"
       value="Add"
+      :disabled="loading"
     >
   </form>
 </template>
 
 <script>
 export default {
-  props: ['modelValue'],
+  props: ['modelValue', 'loading'],
 }
 </script>
 
@@ -57,6 +60,10 @@ export default {
     &:focus {
       box-shadow: 0 0 0 0.2rem rgb(4 53 60 / 25%);
     }
+
+    &:disabled {
+      cursor: default;
+    }
   }
 
   &__btn {
@@ -66,6 +73,12 @@ export default {
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
+
+    &:disabled {
+      filter: grayscale(60%);
+      color: #ccc;
+      cursor: default;
+    }
   }
 
   &__btn--plus {

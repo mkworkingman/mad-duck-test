@@ -1,8 +1,8 @@
 <template>
   <div class="main">
     <h1 class="main__heading">Add Cities</h1>
-    <p class="main__description">Add 5 cities whose temperature you want to track.</p>
-    <AddCity v-model="cityName" @add-city="submitCity" />
+    <p v-if="citiesArray.length < 5" class="main__description">Add 5 cities whose temperature you want to track.</p>
+    <AddCity v-model="cityName" @add-city="submitCity" :loading="loading" />
   </div>
   <div class="card-list">
     <CityCard v-for="card in citiesArray" :key="card" :card="card" />
@@ -25,18 +25,13 @@ export default {
     }
     const cityName = ref('')
     const citiesArray = ref([])
+    const loading = ref(false)
 
     const submitCity = () => {
-      // const formattedCity = cityName.value.trim().toLowerCase().replace(/ /g,"_")
-
-      // if (formattedCity && !citiesArray.value.includes(formattedCity)) {
-        // citiesArray.value.push(formattedCity)
-        // cityName.value = ''
-        // localStorage.setItem('cities', JSON.stringify(citiesArray.value))
-      // }
       const cityNameTrim = cityName.value.trim()
 
-      if (cityNameTrim) {
+      if (cityNameTrim && !loading.value) {
+        loading.value = true
         axios.get('https://api.api-ninjas.com/v1/city', {
           headers: {
             'X-Api-Key': 'GHPKTCFJgl7nrLffyKW2dQ==PWKxCmPRfoQFsqdJ'
@@ -57,6 +52,9 @@ export default {
             }
           })
           .catch(err => console.error(err))
+          .finally(() => {
+            loading.value = false
+          })
       }
     };
 
@@ -64,7 +62,7 @@ export default {
       citiesArray.value = [...citiesStorage.value]
     }
     
-    return { cityName, citiesArray, submitCity }
+    return { cityName, citiesArray, loading, submitCity }
   },
   components: { CityCard, AddCity }
 }
