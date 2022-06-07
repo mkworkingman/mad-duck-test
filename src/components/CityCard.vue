@@ -6,7 +6,7 @@
   >
     <h4 class="card__heading">{{cardInfo.city || card}}</h4>
     <div v-if="loading" class="card__loading">Loading...</div>
-    <div v-else-if="valid" class="card__info">
+    <template v-else-if="valid">
       <p class="card__country">
         {{cardInfo.country}}
       </p>
@@ -14,7 +14,7 @@
         {{cardInfo.temperature}}°C
       </p>
       <button class="card__button">View City</button>
-    </div>
+    </template>
     <div v-else class="card__error">
       Error!
     </div>
@@ -77,15 +77,12 @@ export default {
   }
 
   &__heading {
+    font-size: 16px;
+    word-break: break-word;
+  
     @media (min-width: 820px) {
       font-size: 24px;
     }
-  }
-
-  &__info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
   }
 
   &__country {
@@ -111,7 +108,9 @@ export default {
   }
 
   &__error {
+    font-size: 24px;
     color: #b81a1a;
+    margin-block: auto;
   }
 }
 
