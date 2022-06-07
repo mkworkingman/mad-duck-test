@@ -19,7 +19,7 @@
 
 <script>
 import { reactive, ref } from '@vue/reactivity'
-import axios from 'axios'
+// import axios from 'axios'
 export default {
   props: ['card'],
   setup(props) {
@@ -31,21 +31,21 @@ export default {
       temperature: null
     })
 
-    axios.get('http://api.weatherstack.com/current', {
-      params: {
-        access_key: '2be358ec4c6cf2b17791a919af94d900',
-        query: props.card
-      }
-    }).then(res => {
-      if (res.data.success === false) throw Error(res.data.error.info)
-      cardInfo.city = res.data.location.name
-      cardInfo.country = res.data.location.country
-      cardInfo.temperature = res.data.current.temperature
-    }).catch(err => {
-      console.error(err)
-    }).finally(() => {
-      loading.value = false
-    })
+    // axios.get('http://api.weatherstack.com/current', {
+    //   params: {
+    //     access_key: '2be358ec4c6cf2b17791a919af94d900',
+    //     query: props.card
+    //   }
+    // }).then(res => {
+    //   if (res.data.success === false) throw Error(res.data.error.info)
+    //   cardInfo.city = res.data.location.name
+    //   cardInfo.country = res.data.location.country
+    //   cardInfo.temperature = res.data.current.temperature
+    // }).catch(err => {
+    //   console.error(err)
+    // }).finally(() => {
+    //   loading.value = false
+    // })
     return { name, cardInfo, loading }
   },
 }

@@ -13,6 +13,7 @@
 import { ref } from '@vue/reactivity'
 import CityCard from '../components/CityCard.vue'
 import AddCity from '../components/AddCity.vue'
+import axios from 'axios'
 export default {
   name: "Home",
   setup() {
@@ -26,12 +27,36 @@ export default {
     const citiesArray = ref([])
 
     const submitCity = () => {
-      const formattedCity = cityName.value.trim().toLowerCase().replace(/ /g,"_")
+      // const formattedCity = cityName.value.trim().toLowerCase().replace(/ /g,"_")
 
-      if (formattedCity && !citiesArray.value.includes(formattedCity)) {
-        citiesArray.value.push(formattedCity)
-        cityName.value = ''
-        localStorage.setItem('cities', JSON.stringify(citiesArray.value))
+      // if (formattedCity && !citiesArray.value.includes(formattedCity)) {
+        // citiesArray.value.push(formattedCity)
+        // cityName.value = ''
+        // localStorage.setItem('cities', JSON.stringify(citiesArray.value))
+      // }
+      const cityNameTrim = cityName.value.trim()
+
+      if (cityNameTrim) {
+        axios.get('https://api.api-ninjas.com/v1/city', {
+          headers: {
+            'X-Api-Key': 'GHPKTCFJgl7nrLffyKW2dQ==PWKxCmPRfoQFsqdJ'
+          },
+          params: {
+            name: cityNameTrim
+          }
+        })
+          .then(res => {
+            if (res.data[0]) {
+              const cityNameFromAPI = res.data[0].name
+              console.log(cityNameFromAPI)
+              if (!citiesArray.value.includes(cityNameFromAPI)) {
+                citiesArray.value.push(cityNameFromAPI)
+                cityName.value = ''
+                localStorage.setItem('cities', JSON.stringify(citiesArray.value))
+              }
+            }
+          })
+          .catch(err => console.error(err))
       }
     };
 
