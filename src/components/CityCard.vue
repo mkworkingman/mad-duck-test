@@ -46,7 +46,6 @@ export default {
       }
     })
       .then(res => {
-        console.log(res)
         const resolvedAddressSplitted = res.data.resolvedAddress.split(', ')
         cardInfo.city = resolvedAddressSplitted[0]
         cardInfo.country = resolvedAddressSplitted[resolvedAddressSplitted.length - 1]

@@ -14,7 +14,6 @@ import { reactive, ref } from '@vue/reactivity'
 import CityDetailed from '../components/CityDetailed.vue'
 export default {
   setup() {
-    // const citiesStorage = JSON.parse(localStorage.getItem('cities'))
     const citiesArray = ref([])
     try {
       const parcedStorage = JSON.parse(localStorage.getItem('cities'))
@@ -54,7 +53,6 @@ export default {
         }
       })
         .then(res => {
-          console.log(res)
           cityInfo.success = true
           cityInfo.city = res.data.resolvedAddress.split(',')[0]
           cityInfo.region = res.data.resolvedAddress.split(',').splice(1).join(', ')
