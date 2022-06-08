@@ -28,8 +28,8 @@
         <p><strong class="main-info__strong">Feels Like</strong> {{cityInfo.feelslike}}°C</p>
         <p><strong class="main-info__strong">Humidity</strong> {{cityInfo.humidity}}%</p>
         <p><strong class="main-info__strong">Pressure</strong> {{cityInfo.pressure}} mbar</p>
-        <p><strong class="main-info__strong">Wind</strong> {{cityInfo.windspeed}} m/s {{cityInfo.winddir}} deg</p>
-        <p><strong class="main-info__strong">UV index</strong> {{cityInfo.uvindex}}</p>
+        <p><strong class="main-info__strong">Wind</strong> {{cityInfo.windspeed}} m/s {{windDir}}</p>
+        <p><strong class="main-info__strong">UV index</strong> {{uvIndex}}</p>
       </div>
     </template>
   </div>
@@ -37,9 +37,22 @@
 
 <script>
 import WeatherIcon from './WeatherIcon.vue'
+import getWindDir from '../assets/scripts/getWindDir'
+import getUVIndex from '../assets/scripts/getUVIndex'
+import { computed } from '@vue/runtime-core'
 export default {
   props: ["city", "cityInfo", "notIncluded", "loading"],
-  components: { WeatherIcon }
+  components: { WeatherIcon },
+  setup(props) {
+    const windDir = computed(() => {
+      if (props.cityInfo.winddir) return getWindDir(props.cityInfo.winddir)
+    })
+    const uvIndex = computed(() => {
+      if (props.cityInfo.uvindex) return getUVIndex(props.cityInfo.uvindex)
+    })
+
+    return { windDir, uvIndex }
+  }
 }
 </script>
 

@@ -67,19 +67,7 @@ export default {
           cityInfo.pressure = res.data.currentConditions.pressure
           cityInfo.windspeed = res.data.currentConditions.windspeed
           cityInfo.winddir = res.data.currentConditions.winddir
-
-          const { uvindex } = res.data.currentConditions
-          if (uvindex > 10) {
-            cityInfo.uvindex = 'Extreme'
-          } else if (uvindex > 7) {
-            cityInfo.uvindex = 'Very High'
-          } else if (uvindex > 5) {
-            cityInfo.uvindex = 'High'
-          } else if (uvindex > 2) {
-            cityInfo.uvindex = 'Medium'
-          } else {
-            cityInfo.uvindex = 'Low'
-          }
+          cityInfo.uvindex = res.data.currentConditions.uvindex
         })
         .catch(err => console.error(err))
         .finally(() => {
