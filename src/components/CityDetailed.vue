@@ -1,29 +1,26 @@
 <template>
   <div class="main-info" :class="{'main-info--success' : cityInfo.success}">
     <div class="main-info__location">
-      <h1 class="main-info__heading">{{cityInfo.city || formattedCity}}</h1>
+      <h1 class="main-info__heading">{{cityInfo.city || city}}</h1>
       <div v-if="notIncluded">
         <h2 class="main-info__status">Sorry, this city is not included.</h2>
       </div>
       <h2 v-else-if="loading" class="main-info__status">Loading...</h2>
       <template v-else-if="cityInfo.success">
         <p class="main-info__country">
-          {{cityInfo.region
-            ? cityInfo.region + ', ' + cityInfo.country
-            : cityInfo.country
-          }}
+          {{cityInfo.region}}
         </p>
-        <p>{{cityInfo.lat}}° N</p>
-        <p>{{cityInfo.lon}}° E</p>
+        <p>{{cityInfo.latitude}}° N</p>
+        <p>{{cityInfo.longitude}}° E</p>
       </template>
       <h2 v-else class="main-info__status">Error!</h2>
     </div>
     <template v-if="cityInfo.success">
       <div class="main-info__temperature">
         <div class="main-info__temperature-wrapper">
-          <WeatherIcon :description="cityInfo.weather_descriptions" />
+          <WeatherIcon :description="cityInfo.icon" />
           <p class="main-info__temperature-number">
-            {{cityInfo.temperature}}°C
+            {{cityInfo.temp}}°C
           </p>
         </div>
       </div>
@@ -31,8 +28,8 @@
         <p><strong class="main-info__strong">Feels Like</strong> {{cityInfo.feelslike}}°C</p>
         <p><strong class="main-info__strong">Humidity</strong> {{cityInfo.humidity}}%</p>
         <p><strong class="main-info__strong">Pressure</strong> {{cityInfo.pressure}} mbar</p>
-        <p><strong class="main-info__strong">Wind</strong> {{cityInfo.wind_speed}} m/s {{cityInfo.wind_dir}}</p>
-        <p><strong class="main-info__strong">UV index</strong> {{cityInfo.uv_index}}</p>
+        <p><strong class="main-info__strong">Wind</strong> {{cityInfo.windspeed}} m/s {{cityInfo.winddir}} deg</p>
+        <p><strong class="main-info__strong">UV index</strong> {{cityInfo.uvindex}}</p>
       </div>
     </template>
   </div>
@@ -41,7 +38,7 @@
 <script>
 import WeatherIcon from './WeatherIcon.vue'
 export default {
-  props: ["formattedCity", "cityInfo", "notIncluded", "loading"],
+  props: ["city", "cityInfo", "notIncluded", "loading"],
   components: { WeatherIcon }
 }
 </script>
