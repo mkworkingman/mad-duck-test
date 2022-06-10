@@ -1,8 +1,9 @@
 <template>
   <router-link
-    :to="valid ? '/' + card : ''"
+    :to="'/' + card"
     class="card"
     :class="{'card--not-valid': !valid}"
+    :tabindex="!valid && '-1'"
   >
     <h4 class="card__heading">{{cardInfo.city || card}}</h4>
     <div v-if="loading" class="card__loading">Loading...</div>
@@ -72,7 +73,7 @@ export default {
   animation: cardAppear 400ms;
 
   &--not-valid {
-    cursor: default;
+    pointer-events: none;
   }
 
   &__heading {
