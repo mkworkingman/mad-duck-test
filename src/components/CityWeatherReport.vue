@@ -52,24 +52,38 @@ export default {
 
 <style lang="scss" scoped>
 .weather-report {
-  margin-top: 30px;
+  margin-block: 30px 20px;
   font-weight: 600;
   display: flex;
   flex-direction: column;
   gap: 30px;
 
+  @media (min-width: 820px) {
+    margin-block: 50px 30px;
+    gap: 50px;
+  }
+
+  @media (min-width: 1440px) {
+    margin-block: 30px 60px;
+    gap: 60px;
+  }
+
   .weather-report__date {
     font-size: 18px;
     margin-bottom: 20px;
+
+    @media (min-width: 820px) {
+      font-size: 22px;
+    }
   }
 
   &__hours-list {
     display: flex;
-    gap: 28px;
-    overflow-x: scroll;
+    gap: 20px;
+    overflow-x: auto;
     padding-bottom: 20px;
     // for Firefox
-    scrollbar-color: var(--primary-clr) #efefef;
+    scrollbar-color: #5D979B #efefef;
     scrollbar-width: thin;
 
     @media (min-width: 820px) {
@@ -91,28 +105,39 @@ export default {
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: var(--primary-clr);
+      background-color: #5D979B;
       border-radius: 10px;
     }
 
     .weather-report__hour {
-      flex: 1 0 25px;
       text-align: center;
     }
 
     .weather-report__time {
       font-size: 12px;
       font-weight: 300;
+
+      @media (min-width: 820px) {
+        font-size: 18px;
+      }
     }
 
     .weather-report__weather-icon {
-      width: 25px;
-      height: 25px;
+      width: 30px;
+      height: 30px;
       margin: 30px auto 12px;
+
+      @media (min-width: 820px) {
+        margin-bottom: 15px;
+      }
     }
 
     .weather-report__temp {
       font-size: 14px;
+
+      @media (min-width: 820px) {
+        font-size: 20px;
+      }
     }
   }
 }

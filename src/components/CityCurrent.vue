@@ -12,7 +12,10 @@
       <div class="current-city__temperature">
         <div class="current-city__temperature-wrapper">
           <WeatherIcon className="current-city__weather-icon" :description="cityInfo.icon" />
-          <p class="current-city__temperature-number">
+          <p
+            v-if="cityInfo.temp"
+            class="current-city__temperature-number"
+          >
             {{cityInfo.temp}}°C
           </p>
         </div>
@@ -106,11 +109,19 @@ export default {
   flex-wrap: wrap;
   gap: 20px 10px;
 
+  @media (min-width: 820px) {
+    font-size: 18px;
+  }
+
   &__location {
     flex: 0 0 100%;
 
     .current-city__heading {
       font-size: 22px;
+
+      @media (min-width: 820px) {
+        font-size: 28px;
+      }
     }
 
     .current-city__country {
@@ -146,17 +157,26 @@ export default {
     &-number {
       font-size: 31px;
       font-weight: 600;
+
+      @media (min-width: 820px) {
+        font-size: 48px;
+      }
     }
   }
 
   &__other-info {
-    flex: 1;
+    flex: 1.2;
     display: flex;
     flex-direction: column;
     gap: 8px;
 
+    @media (min-width: 820px) {
+      flex: unset;
+    }
+
     .current-city__strong {
       margin-right: 10px;
+      font-weight: 500;
     }
   }
 
@@ -164,7 +184,7 @@ export default {
     max-width: clamp(660px, 55vw, 862px);
 
     &__location {
-      flex: 1;
+      flex: unset;
     }
   }
 

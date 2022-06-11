@@ -101,5 +101,9 @@ export default {
   color: var(--primary-clr);
   background-color: #fff;
   padding: 26px 20px 30px;
+
+  @media (min-width: 820px) {
+    padding: 40px;
+  }
 }
 </style>
