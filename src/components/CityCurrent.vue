@@ -1,28 +1,28 @@
 <template>
-  <div class="main-info" :class="{'main-info--success' : cityInfo.success}">
-    <div class="main-info__location">
-      <h1 class="main-info__heading">{{cityInfo.city || city}}</h1>
-      <p class="main-info__country">
+  <div class="current-city">
+    <div class="current-city__location">
+      <h1 class="current-city__heading">{{cityInfo.city || city}}</h1>
+      <p class="current-city__country">
         {{cityInfo.region}}
       </p>
       <p>{{cityInfo.latitude}}° N</p>
       <p>{{cityInfo.longitude}}° E</p>
     </div>
     <template v-if="cityInfo.success">
-      <div class="main-info__temperature">
-        <div class="main-info__temperature-wrapper">
+      <div class="current-city__temperature">
+        <div class="current-city__temperature-wrapper">
           <WeatherIcon :description="cityInfo.icon" />
-          <p class="main-info__temperature-number">
+          <p class="current-city__temperature-number">
             {{cityInfo.temp}}°C
           </p>
         </div>
       </div>
-      <div class="main-info__other-info">
-        <p><strong class="main-info__strong">Feels Like</strong> {{cityInfo.feelslike}}°C</p>
-        <p><strong class="main-info__strong">Humidity</strong> {{cityInfo.humidity}}%</p>
-        <p><strong class="main-info__strong">Pressure</strong> {{cityInfo.pressure}} mbar</p>
-        <p><strong class="main-info__strong">Wind</strong> {{cityInfo.windspeed}} m/s {{windDir}}</p>
-        <p><strong class="main-info__strong">UV index</strong> {{uvIndex}}</p>
+      <div class="current-city__other-info">
+        <p><strong class="current-city__strong">Feels Like</strong> {{cityInfo.feelslike}}°C</p>
+        <p><strong class="current-city__strong">Humidity</strong> {{cityInfo.humidity}}%</p>
+        <p><strong class="current-city__strong">Pressure</strong> {{cityInfo.pressure}} mbar</p>
+        <p><strong class="current-city__strong">Wind</strong> {{cityInfo.windspeed}} m/s {{windDir}}</p>
+        <p><strong class="current-city__strong">UV index</strong> {{uvIndex}}</p>
       </div>
     </template>
   </div>
@@ -50,28 +50,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.main-info {
+.current-city {
   padding: 26px 20px 30px;
   border-radius: 10px;
-  color: transparent;
+  color: var(--primary-clr);
+  background-color: #fff;
   max-width: 450px;
   font-size: 14px;
   font-weight: 300;
   display: flex;
   flex-wrap: wrap;
   gap: 20px 10px;
-  transition: background-color 400ms, color 400ms;
 
   &__location {
     flex: 0 0 100%;
 
-    .main-info__heading {
+    .current-city__heading {
       font-size: 22px;
-      color: #fff;
-      transition: color 400ms;
     }
 
-    .main-info__country {
+    .current-city__country {
       margin-block: 10px 15px;
     }
   }
@@ -91,7 +89,7 @@ export default {
       }
     }
 
-    .main-info__weather-icon {
+    .current-city__weather-icon {
       width: 50px;
       height: 50px;
     }
@@ -108,7 +106,7 @@ export default {
     flex-direction: column;
     gap: 8px;
 
-    .main-info__strong {
+    .current-city__strong {
       margin-right: 10px;
     }
   }
@@ -123,15 +121,6 @@ export default {
 
   &__status {
     color: #fff;
-  }
-
-  &--success {
-    color: var(--primary-clr);
-    background-color: #fff;
-
-    .main-info__heading {
-      color: var(--primary-clr);
-    }
   }
 }
 </style>

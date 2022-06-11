@@ -6,7 +6,9 @@
       :city="city"
       :cityInfo="cityInfo"
     />
-    <CityWeatherReport />
+    <CityWeatherReport
+      :weatherReport="weatherReport"
+    />
   </template>
   <h2 v-else>Error!</h2>
 </template>
@@ -45,6 +47,8 @@ export default {
       winddir: null,
       uvindex: null
     })
+    const weatherReport = ref(null)
+
     const notIncluded = ref(false)
     const loading = ref(true)
     const success = ref(null)
@@ -74,6 +78,8 @@ export default {
           cityInfo.windspeed = res.data.currentConditions.windspeed
           cityInfo.winddir = res.data.currentConditions.winddir
           cityInfo.uvindex = res.data.currentConditions.uvindex
+
+          weatherReport.value = res.data.days
         })
         .catch(err => console.error(err))
         .finally(() => {
@@ -83,7 +89,7 @@ export default {
       notIncluded.value = true
     }
 
-    return { city, notIncluded, cityInfo, loading, success }
+    return { city, notIncluded, cityInfo, loading, success, weatherReport }
   },
   components: { CityCurrent, CityWeatherReport }
 }
