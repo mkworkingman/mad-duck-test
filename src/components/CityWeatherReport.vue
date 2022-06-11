@@ -1,5 +1,5 @@
 <template>
-  <div class="weather-report">
+  <div class="detailed-card weather-report">
     <div
       v-for="day in weatherReport"
       :key="day.datetime"
@@ -53,17 +53,14 @@ export default {
 <style lang="scss" scoped>
 .weather-report {
   margin-top: 30px;
-  border-radius: 10px;
-  color: var(--primary-clr);
-  background-color: #fff;
   font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 
-  &__day {
-
-
-    .weather-report__date {
-      font-size: 18px;
-    }
+  .weather-report__date {
+    font-size: 18px;
+    margin-bottom: 20px;
   }
 
   &__hours-list {
@@ -72,7 +69,7 @@ export default {
     overflow-x: scroll;
 
     .weather-report__hour {
-      flex: 1 0 35px;
+      flex: 1 0 25px;
       text-align: center;
     }
 
@@ -82,8 +79,8 @@ export default {
     }
 
     .weather-report__weather-icon {
-      width: 30px;
-      height: 30px;
+      width: 25px;
+      height: 25px;
       margin: 30px auto 12px;
     }
 

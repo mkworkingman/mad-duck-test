@@ -94,3 +94,12 @@ export default {
   components: { CityCurrent, CityWeatherReport }
 }
 </script>
+
+<style lang="scss" scoped>
+.detailed-card {
+  border-radius: 10px;
+  color: var(--primary-clr);
+  background-color: #fff;
+  padding: 26px 20px 30px;
+}
+</style>

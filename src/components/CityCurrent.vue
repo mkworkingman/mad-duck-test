@@ -1,5 +1,5 @@
 <template>
-  <div class="current-city">
+  <div class="detailed-card current-city">
     <div class="current-city__location">
       <h1 class="current-city__heading">{{cityInfo.city || city}}</h1>
       <p class="current-city__country">
@@ -99,10 +99,6 @@ export default {
 
 <style lang="scss" scoped>
 .current-city {
-  padding: 26px 20px 30px;
-  border-radius: 10px;
-  color: var(--primary-clr);
-  background-color: #fff;
   max-width: 450px;
   font-size: 14px;
   font-weight: 300;
