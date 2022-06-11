@@ -5,14 +5,23 @@
       :key="day.datetime"
       class="weather-report__day"
     >
-      {{getFormattedDate(day.datetime)}}
-      <div class="weather-report__hour">
+      <h4 class="weather-report__date">{{getFormattedDate(day.datetime)}}</h4>
+      <div class="weather-report__hours-list">
         <div
-          v-for="hour in day.hours"
+          v-for="(hour, index) in day.hours"
           :key="hour.datetime"  
+          class="weather-report__hour"
         >
-          {{hour.datetime}}
+          <p class="weather-report__time">
+            {{index !== 0 ? index : '00'}}h
+          </p>
           <WeatherIcon className="weather-report__weather-icon" :description="hour.icon" />
+          <p
+            v-if="hour.temp"
+            className="weather-report__temp"
+          >
+            {{hour.temp}}°
+          </p>
         </div>
       </div>
     </div>
@@ -47,21 +56,39 @@ export default {
   border-radius: 10px;
   color: var(--primary-clr);
   background-color: #fff;
-  font-size: 14px;
-  font-weight: 300;
+  font-weight: 600;
 
   &__day {
 
+
+    .weather-report__date {
+      font-size: 18px;
+    }
   }
 
-  &__hour {
+  &__hours-list {
     display: flex;
     gap: 30px;
     overflow-x: scroll;
 
+    .weather-report__hour {
+      flex: 1 0 35px;
+      text-align: center;
+    }
+
+    .weather-report__time {
+      font-size: 12px;
+      font-weight: 300;
+    }
+
     .weather-report__weather-icon {
       width: 30px;
       height: 30px;
+      margin: 30px auto 12px;
+    }
+
+    .weather-report__temp {
+      font-size: 14px;
     }
   }
 }
