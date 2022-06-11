@@ -33,67 +33,14 @@
 
 <script>
 import WeatherIcon from './WeatherIcon.vue'
+import getWindDir from '../assets/scripts/getWindDir'
+import getUVIndex from '../assets/scripts/getUVIndex'
 export default {
   props: ["city", "cityInfo", "notIncluded", "loading"],
   components: { WeatherIcon },
   setup(props) {
-    const getWindDir = () => {
-      const { winddir } = props.cityInfo
-      if (!winddir && typeof winddir !== 'number') return
-      if (winddir < 11.25) {
-        return 'N'
-      } else if (winddir < 33.75) {
-        return 'NNE'
-      } else if (winddir < 56.25) {
-        return 'NE'
-      } else if (winddir < 78.75) {
-        return 'ENE'
-      } else if (winddir < 101.25) {
-        return 'E'
-      } else if (winddir < 123.75) {
-        return 'ESE'
-      } else if (winddir < 146.25) {
-        return 'SE'
-      } else if (winddir < 168.75) {
-        return 'SSE'
-      } else if (winddir < 191.25) {
-        return 'S'
-      } else if (winddir < 213.75) {
-        return 'SSW'
-      } else if (winddir < 236.25) {
-        return 'SW'
-      } else if (winddir < 258.75) {
-        return 'WSW'
-      } else if (winddir < 281.25) {
-        return 'W'
-      } else if (winddir < 303.75) {
-        return 'WNW'
-      } else if (winddir < 326.25) {
-        return 'NW'
-      } else if (winddir < 348.75) {
-        return 'NNW'
-      } else {
-        return 'N'
-      }
-    }
-    const currentWindDir = getWindDir()
-
-    const getUVIndex = () => {
-      const { uvindex } = props.cityInfo
-      if (!uvindex && typeof uvindex !== 'number') return
-      if (uvindex > 10) {
-        return 'Extreme'
-      } else if (uvindex > 7) {
-        return 'Very High'
-      } else if (uvindex > 5) {
-        return 'High'
-      } else if (uvindex > 2) {
-        return 'Medium'
-      } else {
-        return 'Low'
-      }
-    }
-    const currentUVIndex = getUVIndex()
+    const currentWindDir = getWindDir(props.cityInfo.winddir)
+    const currentUVIndex = getUVIndex(props.cityInfo.uvindex)
 
     return { currentWindDir, currentUVIndex }
   }
