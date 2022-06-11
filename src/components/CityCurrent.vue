@@ -33,8 +33,8 @@
 
 <script>
 import WeatherIcon from './WeatherIcon.vue'
-import getWindDir from '../assets/scripts/getWindDir'
-import getUVIndex from '../assets/scripts/getUVIndex'
+import getWindDir from '../utils/getWindDir'
+import getUVIndex from '../utils/getUVIndex'
 export default {
   props: ["city", "cityInfo", "notIncluded", "loading"],
   components: { WeatherIcon },
@@ -65,7 +65,6 @@ export default {
     flex: 0 0 100%;
 
     @media (min-width: 820px) {
-      font-size: 28px;
       flex: unset;
     }
 
