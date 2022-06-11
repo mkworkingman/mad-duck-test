@@ -5,8 +5,8 @@
       <p class="current-city__country">
         {{cityInfo.region}}
       </p>
-      <p>{{cityInfo.latitude}}° N</p>
-      <p>{{cityInfo.longitude}}° E</p>
+      <p v-if="cityInfo.latitude">{{cityInfo.latitude}}° N</p>
+      <p v-if="cityInfo.longitude">{{cityInfo.longitude}}° E</p>
     </div>
     <template v-if="cityInfo.success">
       <div class="current-city__temperature">
@@ -18,11 +18,11 @@
         </div>
       </div>
       <div class="current-city__other-info">
-        <p><strong class="current-city__strong">Feels Like</strong> {{cityInfo.feelslike}}°C</p>
-        <p><strong class="current-city__strong">Humidity</strong> {{cityInfo.humidity}}%</p>
-        <p><strong class="current-city__strong">Pressure</strong> {{cityInfo.pressure}} mbar</p>
-        <p><strong class="current-city__strong">Wind</strong> {{cityInfo.windspeed}} m/s {{getWindDir(cityInfo.winddir)}}</p>
-        <p><strong class="current-city__strong">UV index</strong> {{getUVIndex(cityInfo.uvindex)}}</p>
+        <p v-if="cityInfo.feelslike"><strong class="current-city__strong">Feels Like</strong> {{cityInfo.feelslike}}°C</p>
+        <p v-if="cityInfo.humidity"><strong class="current-city__strong">Humidity</strong> {{cityInfo.humidity}}%</p>
+        <p v-if="cityInfo.pressure"><strong class="current-city__strong">Pressure</strong> {{cityInfo.pressure}} mbar</p>
+        <p v-if="cityInfo.windspeed && currentWindDir"><strong class="current-city__strong">Wind</strong> {{cityInfo.windspeed}} m/s {{currentWindDir}}</p>
+        <p v-if="currentUVIndex"><strong class="current-city__strong">UV index</strong> {{currentUVIndex}}</p>
       </div>
     </template>
   </div>
@@ -33,8 +33,9 @@ import WeatherIcon from './WeatherIcon.vue'
 export default {
   props: ["city", "cityInfo", "notIncluded", "loading"],
   components: { WeatherIcon },
-  setup() {
-    const getWindDir = winddir => {
+  setup(props) {
+    const getWindDir = () => {
+      const { winddir } = props.cityInfo
       if (!winddir && typeof winddir !== 'number') return
       if (winddir < 11.25) {
         return 'N'
@@ -72,7 +73,10 @@ export default {
         return 'N'
       }
     }
-    const getUVIndex = uvindex => {
+    const currentWindDir = getWindDir()
+
+    const getUVIndex = () => {
+      const { uvindex } = props.cityInfo
       if (!uvindex && typeof uvindex !== 'number') return
       if (uvindex > 10) {
         return 'Extreme'
@@ -86,7 +90,9 @@ export default {
         return 'Low'
       }
     }
-    return { getWindDir, getUVIndex }
+    const currentUVIndex = getUVIndex()
+
+    return { currentWindDir, currentUVIndex }
   }
 }
 </script>

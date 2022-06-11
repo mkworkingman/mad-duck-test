@@ -65,9 +65,7 @@ export default {
         }
       })
         .then(res => {
-          console.log(res.data)
           success.value = true
-
           cityInfo.success = true
           cityInfo.city = res.data.resolvedAddress.split(',')[0]
           cityInfo.region = res.data.resolvedAddress.split(',').splice(1).join(', ')
@@ -81,7 +79,6 @@ export default {
           cityInfo.windspeed = res.data.currentConditions.windspeed
           cityInfo.winddir = res.data.currentConditions.winddir
           cityInfo.uvindex = res.data.currentConditions.uvindex
-
           weatherReport.value = res.data.days
         })
         .catch(err => console.error(err))
