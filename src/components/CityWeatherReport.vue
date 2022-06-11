@@ -68,7 +68,15 @@ export default {
     gap: 28px;
     overflow-x: scroll;
     padding-bottom: 20px;
+    // for Firefox
+    scrollbar-color: var(--primary-clr) #efefef;
+    scrollbar-width: thin;
 
+    @media (min-width: 820px) {
+      scrollbar-width: auto;
+    }
+
+    // For Chrome, Opera...
     &::-webkit-scrollbar {
       height: 5px;
 
