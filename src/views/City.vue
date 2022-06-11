@@ -1,17 +1,22 @@
 <template>
-  <CityDetailed
-    :city="city"
-    :cityInfo="cityInfo"
-    :notIncluded="notIncluded"
-    :loading="loading"
-  />
+  <h2 v-if="notIncluded">Sorry, this city is not included.</h2>
+  <h2 v-else-if="loading">Loading...</h2>
+  <template v-else-if="success">
+    <CityCurrent
+      :city="city"
+      :cityInfo="cityInfo"
+    />
+    <CityWeatherReport />
+  </template>
+  <h2 v-else>Error!</h2>
 </template>
 
 <script>
 import { useRoute } from 'vue-router'
 import axios from 'axios'
 import { reactive, ref } from '@vue/reactivity'
-import CityDetailed from '../components/CityDetailed.vue'
+import CityCurrent from '../components/CityCurrent.vue'
+import CityWeatherReport from '../components/CityWeatherReport.vue'
 export default {
   setup() {
     const citiesArray = ref([])
@@ -27,7 +32,6 @@ export default {
     }
     const city = useRoute().params.city
     const cityInfo = reactive({
-      success: false,
       city: null,
       region: null,
       latitude: null,
@@ -43,6 +47,7 @@ export default {
     })
     const notIncluded = ref(false)
     const loading = ref(true)
+    const success = ref(null)
 
     if (citiesArray.value.includes(city)) {
       axios.get('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/' + city, {
@@ -53,6 +58,9 @@ export default {
         }
       })
         .then(res => {
+          console.log(res.data)
+          success.value = true
+
           cityInfo.success = true
           cityInfo.city = res.data.resolvedAddress.split(',')[0]
           cityInfo.region = res.data.resolvedAddress.split(',').splice(1).join(', ')
@@ -75,8 +83,8 @@ export default {
       notIncluded.value = true
     }
 
-    return { city, notIncluded, cityInfo, loading }
+    return { city, notIncluded, cityInfo, loading, success }
   },
-  components: { CityDetailed }
+  components: { CityCurrent, CityWeatherReport }
 }
 </script>

@@ -2,18 +2,11 @@
   <div class="main-info" :class="{'main-info--success' : cityInfo.success}">
     <div class="main-info__location">
       <h1 class="main-info__heading">{{cityInfo.city || city}}</h1>
-      <div v-if="notIncluded">
-        <h2 class="main-info__status">Sorry, this city is not included.</h2>
-      </div>
-      <h2 v-else-if="loading" class="main-info__status">Loading...</h2>
-      <template v-else-if="cityInfo.success">
-        <p class="main-info__country">
-          {{cityInfo.region}}
-        </p>
-        <p>{{cityInfo.latitude}}° N</p>
-        <p>{{cityInfo.longitude}}° E</p>
-      </template>
-      <h2 v-else class="main-info__status">Error!</h2>
+      <p class="main-info__country">
+        {{cityInfo.region}}
+      </p>
+      <p>{{cityInfo.latitude}}° N</p>
+      <p>{{cityInfo.longitude}}° E</p>
     </div>
     <template v-if="cityInfo.success">
       <div class="main-info__temperature">
