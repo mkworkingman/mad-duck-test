@@ -24,8 +24,8 @@
 
 <script>
 import { reactive, ref } from '@vue/reactivity'
-import axios from 'axios'
 import { computed } from '@vue/runtime-core'
+import getWeather from '../utils/getWeather'
 export default {
   props: ['card'],
   setup(props) {
@@ -37,15 +37,9 @@ export default {
     })
     const valid = computed(() => {
       return cardInfo.country && cardInfo.temperature
-    }) 
-
-    axios.get('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/' + props.card, {
-      params: {
-        unitGroup: 'metric',
-        key: '7F44VQFF6LAFLRSSLKDYCD3GA',
-        contentType: 'json'
-      }
     })
+
+    getWeather(props.card)
       .then(res => {
         const resolvedAddressSplitted = res.data.resolvedAddress.split(', ')
         cardInfo.city = resolvedAddressSplitted[0]

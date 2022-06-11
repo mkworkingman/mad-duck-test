@@ -13,7 +13,7 @@
 import { ref } from '@vue/reactivity'
 import CityCard from '../components/CityCard.vue'
 import AddCity from '../components/AddCity.vue'
-import axios from 'axios'
+import getCity from '../utils/getCity'
 export default {
   name: "Home",
   setup() {
@@ -36,14 +36,7 @@ export default {
 
       if (cityNameTrim && !loading.value) {
         loading.value = true
-        axios.get('https://api.api-ninjas.com/v1/city', {
-          headers: {
-            'X-Api-Key': 'GHPKTCFJgl7nrLffyKW2dQ==PWKxCmPRfoQFsqdJ'
-          },
-          params: {
-            name: cityNameTrim
-          }
-        })
+        getCity(cityNameTrim)
           .then(res => {
             if (res.data[0]) {
               const cityNameFromAPI = res.data[0].name

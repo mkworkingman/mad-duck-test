@@ -18,10 +18,10 @@
 
 <script>
 import { useRoute } from 'vue-router'
-import axios from 'axios'
 import { reactive, ref } from '@vue/reactivity'
 import CityCurrent from '../components/CityCurrent.vue'
 import CityWeatherReport from '../components/CityWeatherReport.vue'
+import getWeather from '../utils/getWeather'
 export default {
   setup() {
     const citiesArray = ref([])
@@ -57,13 +57,7 @@ export default {
     const success = ref(null)
 
     if (citiesArray.value.includes(city)) {
-      axios.get('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/' + city, {
-        params: {
-          unitGroup: 'metric',
-          key: '7F44VQFF6LAFLRSSLKDYCD3GA',
-          contentType: 'json'
-        }
-      })
+      getWeather(city)
         .then(res => {
           success.value = true
           cityInfo.success = true
