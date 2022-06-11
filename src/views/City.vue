@@ -1,6 +1,9 @@
 <template>
-  <h2 v-if="notIncluded">Sorry, this city is not included.</h2>
-  <h2 v-else-if="loading">Loading...</h2>
+  <h2 v-if="notIncluded">Sorry, this city ({{city}}) is not included.</h2>
+  <template v-else-if="loading">
+    <h2>{{city}}</h2>
+    <h3>Loading...</h3>
+  </template>
   <template v-else-if="success">
     <CityCurrent
       :city="city"
