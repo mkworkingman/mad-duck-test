@@ -5,7 +5,6 @@
       :key="day.datetime"
       class="weather-report__day"
     >
-      {{day.datetime}}
       {{getFormattedDate(day.datetime)}}
     </div>
   </div>
