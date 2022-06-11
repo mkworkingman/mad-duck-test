@@ -1,11 +1,11 @@
 <template>
-  <img class="weather-icon" :src="imgUrl" :alt="description || ''">
+  <img :class="className" :src="imgUrl" :alt="description || ''">
 </template>
 
 <script>
 import { ref } from '@vue/reactivity'
 export default {
-  props: ['description'],
+  props: ['className', 'description'],
   setup (props) {
     const imgUrl = ref(null)
     if (props.description) {
@@ -19,15 +19,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-.weather-icon {
-  width: 50px;
-  height: 50px;
-
-  @media (min-width: 820px) {
-    width: 75px;
-    height: 75px;
-  }
-}
-</style>

@@ -12,7 +12,7 @@
           :key="hour.datetime"  
         >
           {{hour.datetime}}
-          <WeatherIcon :description="hour.icon" />
+          <WeatherIcon className="weather-report__weather-icon" :description="hour.icon" />
         </div>
       </div>
     </div>
@@ -58,6 +58,11 @@ export default {
     display: flex;
     gap: 30px;
     overflow-x: scroll;
+
+    .weather-report__weather-icon {
+      width: 30px;
+      height: 30px;
+    }
   }
 }
 </style>

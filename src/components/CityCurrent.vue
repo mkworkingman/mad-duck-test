@@ -11,7 +11,7 @@
     <template v-if="cityInfo.success">
       <div class="current-city__temperature">
         <div class="current-city__temperature-wrapper">
-          <WeatherIcon :description="cityInfo.icon" />
+          <WeatherIcon className="current-city__weather-icon" :description="cityInfo.icon" />
           <p class="current-city__temperature-number">
             {{cityInfo.temp}}°C
           </p>
@@ -140,6 +140,11 @@ export default {
     .current-city__weather-icon {
       width: 50px;
       height: 50px;
+
+      @media (min-width: 820px) {
+        width: 75px;
+        height: 75px;
+      }
     }
 
     &-number {
