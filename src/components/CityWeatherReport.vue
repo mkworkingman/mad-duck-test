@@ -65,8 +65,27 @@ export default {
 
   &__hours-list {
     display: flex;
-    gap: 30px;
+    gap: 28px;
     overflow-x: scroll;
+    padding-bottom: 20px;
+
+    &::-webkit-scrollbar {
+      height: 5px;
+
+      @media (min-width: 820px) {
+        height: 10px;
+      }
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #efefef;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--primary-clr);
+      border-radius: 10px;
+    }
 
     .weather-report__hour {
       flex: 1 0 25px;
