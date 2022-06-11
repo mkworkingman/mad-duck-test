@@ -57,11 +57,17 @@ export default {
   gap: 20px 10px;
 
   @media (min-width: 820px) {
+    max-width: 862px;
     font-size: 18px;
   }
 
   &__location {
     flex: 0 0 100%;
+
+    @media (min-width: 820px) {
+      font-size: 28px;
+      flex: unset;
+    }
 
     .current-city__heading {
       font-size: 22px;
@@ -124,14 +130,6 @@ export default {
     .current-city__strong {
       margin-right: 10px;
       font-weight: 500;
-    }
-  }
-
-  @media (min-width: 820px) {
-    max-width: clamp(660px, 55vw, 862px);
-
-    &__location {
-      flex: unset;
     }
   }
 
