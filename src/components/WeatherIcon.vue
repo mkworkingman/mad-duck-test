@@ -7,7 +7,7 @@ import { ref } from '@vue/reactivity'
 export default {
   props: ['description'],
   setup (props) {
-    const imgUrl = ref('')
+    const imgUrl = ref(null)
     if (props.description) {
       try {
         imgUrl.value = require(`@/assets/images/icons/${props.description}.svg`)
