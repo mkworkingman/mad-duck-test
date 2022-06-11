@@ -45,10 +45,10 @@ export default {
   components: { WeatherIcon },
   setup(props) {
     const windDir = computed(() => {
-      if (props.cityInfo.winddir) return getWindDir(props.cityInfo.winddir)
+      if (props.cityInfo.winddir !== undefined) return getWindDir(props.cityInfo.winddir)
     })
     const uvIndex = computed(() => {
-      if (props.cityInfo.uvindex) return getUVIndex(props.cityInfo.uvindex)
+      if (props.cityInfo.uvindex !== undefined) return getUVIndex(props.cityInfo.uvindex)
     })
 
     return { windDir, uvIndex }
