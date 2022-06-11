@@ -1,5 +1,5 @@
 export default function getWindDir(winddir) {
-  if (winddir === undefined) return
+  if (!winddir && typeof winddir !== 'number') return
   if (winddir < 11.25) {
     return 'N'
   } else if (winddir < 33.75) {

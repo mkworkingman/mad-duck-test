@@ -12,7 +12,7 @@ export default {
       try {
         imgUrl.value = require(`@/assets/images/icons/${props.description}.svg`)
       } catch (err) {
-        console.error(err)
+        imgUrl.value = ''
       }
     }
     return { imgUrl }

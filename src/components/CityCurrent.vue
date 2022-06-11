@@ -22,7 +22,7 @@
         <p><strong class="current-city__strong">Humidity</strong> {{cityInfo.humidity}}%</p>
         <p><strong class="current-city__strong">Pressure</strong> {{cityInfo.pressure}} mbar</p>
         <p><strong class="current-city__strong">Wind</strong> {{cityInfo.windspeed}} m/s {{getWindDir(cityInfo.winddir)}}</p>
-        <p><strong class="current-city__strong">UV index</strong> {{uvIndex}} {{getUVIndex(cityInfo.uvindex)}}</p>
+        <p><strong class="current-city__strong">UV index</strong> {{getUVIndex(cityInfo.uvindex)}}</p>
       </div>
     </template>
   </div>
