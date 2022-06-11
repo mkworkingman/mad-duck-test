@@ -1,4 +1,5 @@
 export default function getUVIndex(uvindex) {
+  if (uvindex === undefined) return
   if (uvindex > 10) {
     return 'Extreme'
   } else if (uvindex > 7) {
