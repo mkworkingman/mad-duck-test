@@ -25,7 +25,7 @@
 <script>
 import { reactive, ref } from '@vue/reactivity'
 import { computed } from '@vue/runtime-core'
-import getWeather from '../utils/getWeather'
+import getWeather from '../utils/http/getWeather'
 export default {
   props: ['card'],
   setup(props) {

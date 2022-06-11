@@ -21,7 +21,7 @@ import { useRoute } from 'vue-router'
 import { reactive, ref } from '@vue/reactivity'
 import CityCurrent from '../components/CityCurrent.vue'
 import CityWeatherReport from '../components/CityWeatherReport.vue'
-import getWeather from '../utils/getWeather'
+import getWeather from '../utils/http/getWeather'
 export default {
   setup() {
     const citiesArray = ref([])

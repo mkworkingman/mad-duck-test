@@ -13,7 +13,7 @@
 import { ref } from '@vue/reactivity'
 import CityCard from '../components/CityCard.vue'
 import AddCity from '../components/AddCity.vue'
-import getCity from '../utils/getCity'
+import getCity from '../utils/http/getCity'
 export default {
   name: "Home",
   setup() {
