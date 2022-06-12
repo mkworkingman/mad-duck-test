@@ -8,7 +8,7 @@
       <p v-if="cityInfo.latitude">{{cityInfo.latitude}}° N</p>
       <p v-if="cityInfo.longitude">{{cityInfo.longitude}}° E</p>
     </div>
-    <template v-if="cityInfo.success">
+    <template v-if="success">
       <div class="current-city__temperature">
         <div class="current-city__temperature-wrapper">
           <WeatherIcon className="current-city__weather-icon" :description="cityInfo.icon" />
@@ -36,7 +36,7 @@ import WeatherIcon from './WeatherIcon.vue'
 import getWindDir from '../utils/getWindDir'
 import getUVIndex from '../utils/getUVIndex'
 export default {
-  props: ["city", "cityInfo", "notIncluded", "loading"],
+  props: ["city", "cityInfo", "success"],
   components: { WeatherIcon },
   setup(props) {
     const currentWindDir = getWindDir(props.cityInfo.winddir)

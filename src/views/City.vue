@@ -8,6 +8,7 @@
     <CityCurrent
       :city="city"
       :cityInfo="cityInfo"
+      :success="success"
     />
     <CityWeatherReport
       :weatherReport="weatherReport"
@@ -60,7 +61,6 @@ export default {
       getWeather(city)
         .then(res => {
           success.value = true
-          cityInfo.success = true
           cityInfo.city = res.data.resolvedAddress.split(',')[0]
           cityInfo.region = res.data.resolvedAddress.split(',').splice(1).join(', ')
           cityInfo.latitude = res.data.latitude
