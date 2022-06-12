@@ -8,26 +8,24 @@
       <p v-if="cityInfo.latitude">{{cityInfo.latitude}}° N</p>
       <p v-if="cityInfo.longitude">{{cityInfo.longitude}}° E</p>
     </div>
-    <template v-if="success">
-      <div class="current-city__temperature">
-        <div class="current-city__temperature-wrapper">
-          <WeatherIcon className="current-city__weather-icon" :description="cityInfo.icon" />
-          <p
-            v-if="cityInfo.temp"
-            class="current-city__temperature-number"
-          >
-            {{cityInfo.temp}}°C
-          </p>
-        </div>
+    <div class="current-city__temperature">
+      <div class="current-city__temperature-wrapper">
+        <WeatherIcon className="current-city__weather-icon" :description="cityInfo.icon" />
+        <p
+          v-if="cityInfo.temp"
+          class="current-city__temperature-number"
+        >
+          {{cityInfo.temp}}°C
+        </p>
       </div>
-      <div class="current-city__other-info">
-        <p v-if="cityInfo.feelslike"><strong class="current-city__strong">Feels Like</strong> {{cityInfo.feelslike}}°C</p>
-        <p v-if="cityInfo.humidity"><strong class="current-city__strong">Humidity</strong> {{cityInfo.humidity}}%</p>
-        <p v-if="cityInfo.pressure"><strong class="current-city__strong">Pressure</strong> {{cityInfo.pressure}} mbar</p>
-        <p v-if="cityInfo.windspeed && currentWindDir"><strong class="current-city__strong">Wind</strong> {{cityInfo.windspeed}} m/s {{currentWindDir}}</p>
-        <p v-if="currentUVIndex"><strong class="current-city__strong">UV index</strong> {{currentUVIndex}}</p>
-      </div>
-    </template>
+    </div>
+    <div class="current-city__other-info">
+      <p v-if="cityInfo.feelslike"><strong class="current-city__strong">Feels Like</strong> {{cityInfo.feelslike}}°C</p>
+      <p v-if="cityInfo.humidity"><strong class="current-city__strong">Humidity</strong> {{cityInfo.humidity}}%</p>
+      <p v-if="cityInfo.pressure"><strong class="current-city__strong">Pressure</strong> {{cityInfo.pressure}} mbar</p>
+      <p v-if="cityInfo.windspeed && currentWindDir"><strong class="current-city__strong">Wind</strong> {{cityInfo.windspeed}} m/s {{currentWindDir}}</p>
+      <p v-if="currentUVIndex"><strong class="current-city__strong">UV index</strong> {{currentUVIndex}}</p>
+    </div>
   </div>
 </template>
 

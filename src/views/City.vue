@@ -8,7 +8,6 @@
     <CityCurrent
       :city="city"
       :cityInfo="cityInfo"
-      :success="success"
     />
     <CityWeatherReport
       :weatherReport="weatherReport"
