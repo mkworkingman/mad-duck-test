@@ -33,7 +33,7 @@ describe('Main Page', () => {
   })
 
   it('Full Localstorage', async () => {
-    localStorage.setItem('cities', '["sydney","novi_sad","podgorica"]')
+    localStorage.setItem('cities', '["Sydney","Belgrade","Podgorica"]')
     
     const { container } = render(Home)
 

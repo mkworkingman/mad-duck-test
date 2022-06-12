@@ -1,6 +1,6 @@
 export default function getFormattedDate(date) {
   const currentDate = new Date(date)
-  if (!date || !currentDate.getDate()) return
+  if (date === undefined || !currentDate.getDate()) return
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
