@@ -1,4 +1,4 @@
-import Home from './Home.vue'
+import Home from '../views/Home.vue'
 import { render, screen, waitForElementToBeRemoved } from '@testing-library/vue'
 import "@testing-library/jest-dom"
 import "@testing-library/user-event"
@@ -33,16 +33,16 @@ describe('Main Page', () => {
   })
 
   it('Full Localstorage', async () => {
-    localStorage.setItem('cities', '["astrakhan","sydney","novi_sad","podgorica"]')
+    localStorage.setItem('cities', '["sydney","novi_sad","podgorica"]')
     
     const { container } = render(Home)
 
-    expect(container.querySelectorAll('.card').length).toBe(4)
+    expect(container.querySelectorAll('.card').length).toBe(3)
     const firstCard = container.querySelectorAll('.card')[0]
     await waitForElementToBeRemoved(firstCard.querySelector('.card__loading'))
       .then(() => {
         const firstCardInnerHTML = firstCard.innerHTML
-        expect(firstCardInnerHTML).toMatch(/Astrakhan/i)
+        expect(firstCardInnerHTML).toMatch(/Sydney/i)
         expect(firstCardInnerHTML).toMatch(/°C/i)
         expect(firstCardInnerHTML).toMatch(/View City/i)
       })
