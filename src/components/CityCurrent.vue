@@ -64,6 +64,7 @@ export default {
 
     @media (min-width: 820px) {
       flex: unset;
+      max-width: 33%;
     }
 
     .current-city__heading {
