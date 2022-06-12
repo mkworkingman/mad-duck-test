@@ -39,7 +39,7 @@ describe('Main Page', () => {
 
     expect(container.querySelectorAll('.card').length).toBe(3)
     const firstCard = container.querySelectorAll('.card')[0]
-    await waitForElementToBeRemoved(firstCard.querySelector('.card__loading'))
+    await waitForElementToBeRemoved(firstCard.querySelector('.card__loading'), { timeout: 10000 })
       .then(() => {
         const firstCardInnerHTML = firstCard.innerHTML
         expect(firstCardInnerHTML).toMatch(/Sydney/i)
