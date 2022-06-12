@@ -1,5 +1,5 @@
 export default function getUVIndex(uvindex) {
-  if (!uvindex && typeof uvindex !== 'number') return
+  if (uvindex === undefined || typeof uvindex !== 'number') return
   if (uvindex > 10) {
     return 'Extreme'
   } else if (uvindex > 7) {
