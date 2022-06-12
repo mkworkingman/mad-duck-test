@@ -21,11 +21,13 @@ export default {
     const citiesArray = ref([])
     const loading = ref(false)
     try {
-      const parcedStorage = JSON.parse(localStorage.getItem('cities'))
-      if (Array.isArray(parcedStorage)) {
-        citiesArray.value = parcedStorage
-      } else {
-        throw Error
+      if (localStorage.getItem('cities')) {
+        const parcedStorage = JSON.parse(localStorage.getItem('cities'))
+        if (Array.isArray(parcedStorage)) {
+          citiesArray.value = parcedStorage
+        } else {
+          throw Error
+        }
       }
     } catch {
       console.error('Wrong Storage')
