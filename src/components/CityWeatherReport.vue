@@ -12,7 +12,9 @@
           :key="hour.datetime"
           :hour="hour"
           :index="index"
-        />
+        >
+          <WeatherIcon className="weather-icon" :description="hour.icon" />
+        </WeatherReportHour>
       </WeatherReportList>
     </div>
   </div>
@@ -22,10 +24,11 @@
 import getFormattedDate from '../utils/getFormattedDate'
 import WeatherReportList from './WeatherReportList.vue'
 import WeatherReportHour from './WeatherReportHour.vue'
+import WeatherIcon from './WeatherIcon.vue'
 export default {
   name: 'CityWeatherReport',
   props: ['weatherReport'],
-  components: { WeatherReportList, WeatherReportHour },
+  components: { WeatherReportList, WeatherReportHour, WeatherIcon },
   setup () {
     return { getFormattedDate }
   }
@@ -50,12 +53,22 @@ export default {
     gap: 60px;
   }
 
-  .weather-report__date {
+  &__date {
     font-size: 18px;
     margin-bottom: 20px;
 
     @media (min-width: 820px) {
       font-size: 22px;
+    }
+  }
+
+  .weather-icon {
+    width: 30px;
+    height: 30px;
+    margin: 30px auto 12px;
+
+    @media (min-width: 820px) {
+      margin-bottom: 15px;
     }
   }
 }

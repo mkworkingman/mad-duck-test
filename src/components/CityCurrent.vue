@@ -35,7 +35,7 @@ import getWindDir from '../utils/getWindDir'
 import getUVIndex from '../utils/getUVIndex'
 export default {
   name: 'CityCurrent',
-  props: ["city", "cityInfo", "success"],
+  props: ["city", "cityInfo"],
   components: { WeatherIcon },
   setup(props) {
     const currentWindDir = getWindDir(props.cityInfo.winddir)

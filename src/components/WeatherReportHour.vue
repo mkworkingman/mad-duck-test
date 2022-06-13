@@ -3,7 +3,7 @@
     <p class="weather-report-hour__time">
       {{index !== 0 ? index : '00'}}h
     </p>
-    <WeatherIcon className="weather-report-hour__icon" :description="hour.icon" />
+    <slot />
     <p
       v-if="hour.temp"
       className="weather-report-hour__temp"
@@ -14,11 +14,9 @@
 </template>
 
 <script>
-import WeatherIcon from './WeatherIcon.vue'
 export default {
   name: 'WeatherReportHour',
-    props: ['hour', 'index'],
-  components: { WeatherIcon }
+  props: ['hour', 'index']
 }
 </script>
 
@@ -33,16 +31,6 @@ export default {
 
     @media (min-width: 820px) {
       font-size: 18px;
-    }
-  }
-
-  &__icon {
-    width: 30px;
-    height: 30px;
-    margin: 30px auto 12px;
-
-    @media (min-width: 820px) {
-      margin-bottom: 15px;
     }
   }
 
