@@ -67,6 +67,14 @@ export default {
   flex-direction: column;
   animation: cardAppear 400ms;
 
+  @media (min-width: 820px) {
+    padding: 30px 20px 40px;
+  }
+
+  @media (min-width: 1200px) {
+    padding: 40px 40px 45px;
+  }
+
   &--not-valid {
     pointer-events: none;
   }
@@ -84,12 +92,22 @@ export default {
     font-size: 12px;
     color: #707070;
     margin-block: 5px 10px;
+
+    @media (min-width: 820px) {
+      font-size: 16px;
+      margin-block: 10px 30px;
+    }
   }
 
   &__temperature {
     margin-block: auto 20px;
     font-size: 38px;
     font-weight: 600;
+
+    @media (min-width: 820px) {
+      font-size: 48px;
+      margin-bottom: 30px;
+    }
   }
 
   &__button {
@@ -100,6 +118,11 @@ export default {
     width: 100%;
     border-radius: 8px;
     cursor: pointer;
+
+    @media (min-width: 820px) {
+      font-size: 16px;
+      height: 40px;
+    }
   }
 
   &__error {
