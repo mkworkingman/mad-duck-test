@@ -50,7 +50,7 @@ describe('City Page', () => {
         const country = screen.getByText(/Australia/i)
         expect(country).toBeInTheDocument()
         expect(container.querySelector('.detailed-card.weather-report')).toBeInTheDocument()
-        expect(container.querySelectorAll('.weather-report__hour').length).toBe(15 * 24)
+        expect(container.querySelectorAll('.weather-report-hour').length).toBe(15 * 24)
       })
   })
 })
