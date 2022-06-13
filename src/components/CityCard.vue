@@ -37,7 +37,7 @@ export default {
       temperature: null
     })
     const valid = computed(() => {
-      return cardInfo.country && cardInfo.temperature
+      return !!(cardInfo.country && cardInfo.temperature)
     })
 
     getWeather(props.card)
