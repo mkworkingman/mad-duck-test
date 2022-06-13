@@ -41,11 +41,11 @@ export default {
     })
 
     getWeather(props.card)
-      .then(res => {
-        const resolvedAddressSplitted = res.data.resolvedAddress.split(', ')
+      .then(data => {
+        const resolvedAddressSplitted = data.resolvedAddress.split(', ')
         cardInfo.city = resolvedAddressSplitted[0]
         cardInfo.country = resolvedAddressSplitted[resolvedAddressSplitted.length - 1]
-        cardInfo.temperature = res.data.currentConditions.temp
+        cardInfo.temperature = data.currentConditions.temp
       })
       .catch(err => console.error(err))
       .finally(() => {

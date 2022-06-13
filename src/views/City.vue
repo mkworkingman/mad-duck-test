@@ -57,21 +57,21 @@ export default {
 
     if (citiesArray.value.includes(city)) {
       getWeather(city)
-        .then(res => {
+        .then(data => {
           success.value = true
-          cityInfo.city = res.data.resolvedAddress.split(',')[0]
-          cityInfo.region = res.data.resolvedAddress.split(',').splice(1).join(', ')
-          cityInfo.latitude = res.data.latitude
-          cityInfo.longitude = res.data.longitude
-          cityInfo.icon = res.data.currentConditions.icon
-          cityInfo.temp = res.data.currentConditions.temp
-          cityInfo.feelslike = res.data.currentConditions.feelslike
-          cityInfo.humidity = res.data.currentConditions.humidity
-          cityInfo.pressure = res.data.currentConditions.pressure
-          cityInfo.windspeed = res.data.currentConditions.windspeed
-          cityInfo.winddir = res.data.currentConditions.winddir
-          cityInfo.uvindex = res.data.currentConditions.uvindex
-          weatherReport.value = (res.data.days.map(day => ({
+          cityInfo.city = data.resolvedAddress.split(',')[0]
+          cityInfo.region = data.resolvedAddress.split(',').splice(1).join(', ')
+          cityInfo.latitude = data.latitude
+          cityInfo.longitude = data.longitude
+          cityInfo.icon = data.currentConditions.icon
+          cityInfo.temp = data.currentConditions.temp
+          cityInfo.feelslike = data.currentConditions.feelslike
+          cityInfo.humidity = data.currentConditions.humidity
+          cityInfo.pressure = data.currentConditions.pressure
+          cityInfo.windspeed = data.currentConditions.windspeed
+          cityInfo.winddir = data.currentConditions.winddir
+          cityInfo.uvindex = data.currentConditions.uvindex
+          weatherReport.value = (data.days.map(day => ({
             datetime: day.datetime,
             hours: day.hours.map(hour => ({
               datetime: hour.datetime,

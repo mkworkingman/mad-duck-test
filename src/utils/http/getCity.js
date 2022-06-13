@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-export default function getCity(city) {
-  return axios.get('https://api.api-ninjas.com/v1/city', {
+export default async function getCity(city) {
+  const { data } = await axios.get('https://api.api-ninjas.com/v1/city', {
     headers: {
       'X-Api-Key': 'GHPKTCFJgl7nrLffyKW2dQ==PWKxCmPRfoQFsqdJ'
     },
@@ -9,4 +9,5 @@ export default function getCity(city) {
       name: city
     }
   })
+  return data
 }

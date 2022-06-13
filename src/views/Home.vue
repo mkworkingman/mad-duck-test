@@ -38,9 +38,9 @@ export default {
       if (cityNameTrim && !loading.value) {
         loading.value = true
         getCity(cityNameTrim)
-          .then(res => {
-            if (res.data[0]) {
-              const cityNameFromAPI = res.data[0].name
+          .then(data => {
+            if (data[0]) {
+              const cityNameFromAPI = data[0].name
               if (!citiesArray.value.includes(cityNameFromAPI)) {
                 citiesArray.value.push(cityNameFromAPI)
                 cityName.value = ''
