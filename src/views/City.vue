@@ -71,7 +71,14 @@ export default {
           cityInfo.windspeed = res.data.currentConditions.windspeed
           cityInfo.winddir = res.data.currentConditions.winddir
           cityInfo.uvindex = res.data.currentConditions.uvindex
-          weatherReport.value = res.data.days
+          weatherReport.value = (res.data.days.map(day => ({
+            datetime: day.datetime,
+            hours: day.hours.map(hour => ({
+              datetime: hour.datetime,
+              temp: hour.temp,
+              icon: hour.icon
+            }))
+          })))
         })
         .catch(err => console.error(err))
         .finally(() => {
