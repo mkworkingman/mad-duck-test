@@ -9,27 +9,27 @@ beforeEach(() => {
 });
 
 describe('City Page', () => {
-  it('Check if Not Included 1', () => {
+  it('Empty Localstorage', () => {
     render(City)
     const heading = screen.queryByRole('heading', { level: 2, name: 'Sorry, this city (Sydney) is not included.' })
     expect(heading).toBeInTheDocument()
   })
 
-  it('Check if Not Included 2', () => {
+  it('Wrong Localstorage', () => {
     localStorage.setItem('cities', 'test')
     render(City)
     const heading = screen.queryByRole('heading', { level: 2, name: 'Sorry, this city (Sydney) is not included.' })
     expect(heading).toBeInTheDocument()
   })
 
-  it('Check if Not Included 3', () => {
+  it('Included', () => {
     localStorage.setItem('cities', '["Astrakhan","Podgorica"]')
     render(City)
     const heading = screen.queryByRole('heading', { level: 2, name: 'Sorry, this city (Sydney) is not included.' })
     expect(heading).toBeInTheDocument()
   })
 
-  it('Check if Included', () => {
+  it('Included', () => {
     localStorage.setItem('cities', '["Astrakhan","Sydney","Podgorica"]')
     render(City)
     const heading = screen.queryByRole('heading', { level: 2, name: /sydney/i })

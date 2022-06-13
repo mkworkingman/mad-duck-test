@@ -30,8 +30,6 @@ export default {
       const parcedStorage = JSON.parse(localStorage.getItem('cities'))
       if (Array.isArray(parcedStorage)) {
         citiesArray.value = parcedStorage
-      } else {
-        throw Error
       }
     } catch {
       console.error('Wrong Storage')
