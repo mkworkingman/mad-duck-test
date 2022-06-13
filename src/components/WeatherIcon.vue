@@ -5,6 +5,7 @@
 <script>
 import { ref } from '@vue/reactivity'
 export default {
+  name: 'WeatherIcon',
   props: ['className', 'description'],
   setup (props) {
     const imgUrl = ref(null)

@@ -34,6 +34,7 @@ import WeatherIcon from './WeatherIcon.vue'
 import getWindDir from '../utils/getWindDir'
 import getUVIndex from '../utils/getUVIndex'
 export default {
+  name: 'CityCurrent',
   props: ["city", "cityInfo", "success"],
   components: { WeatherIcon },
   setup(props) {

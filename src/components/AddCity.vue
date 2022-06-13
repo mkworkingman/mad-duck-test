@@ -24,6 +24,7 @@
 
 <script>
 export default {
+  name: 'AddCity',
   props: ['modelValue', 'loading'],
 }
 </script>

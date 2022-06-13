@@ -32,6 +32,7 @@
 import WeatherIcon from './WeatherIcon.vue'
 import getFormattedDate from '../utils/getFormattedDate'
 export default {
+  name: 'CityWeatherReport',
   props: ['weatherReport'],
   components: { WeatherIcon },
   setup () {

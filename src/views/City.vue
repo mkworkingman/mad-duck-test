@@ -23,6 +23,7 @@ import CityCurrent from '../components/CityCurrent.vue'
 import CityWeatherReport from '../components/CityWeatherReport.vue'
 import getWeather from '../utils/http/getWeather'
 export default {
+  name: 'City',
   setup() {
     const citiesArray = ref([])
     try {

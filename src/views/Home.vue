@@ -15,7 +15,7 @@ import CityCard from '../components/CityCard.vue'
 import AddCity from '../components/AddCity.vue'
 import getCity from '../utils/http/getCity'
 export default {
-  name: "Home",
+  name: 'Home',
   setup() {
     const cityName = ref('')
     const citiesArray = ref([])

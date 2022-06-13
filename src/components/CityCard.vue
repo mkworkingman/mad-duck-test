@@ -27,6 +27,7 @@ import { reactive, ref } from '@vue/reactivity'
 import { computed } from '@vue/runtime-core'
 import getWeather from '../utils/http/getWeather'
 export default {
+  name: 'CityCard',
   props: ['card'],
   setup(props) {
     const loading = ref(true)
