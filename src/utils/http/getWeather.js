@@ -4,7 +4,7 @@ export default async function getWeather(city) {
   const { data } = await axios.get('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/' + city, {
     params: {
       unitGroup: 'metric',
-      key: '7F44VQFF6LAFLRSSLKDYCD3GA',
+      key: 'TTLD6FBNVKTDUDB4ZNPG52V9R',
       contentType: 'json'
     }
   })
